@@ -1,109 +1,91 @@
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./LandingPage.css";
+import Header from "./Header";
 
 const LandingPage = () => {
-  /* simple parallax for the hand-drawn line */
   const { scrollY } = useScroll();
   const lineY = useTransform(scrollY, [0, 400], [0, 120]);
 
   return (
     <div className="landing-container">
-      {/* ───────── HEADER ───────── */}
-      <header className="landing-header">
-        <div className="logo-container">
-          <img
-            src="https://health-covery.com/wp-content/uploads/2025/05/ALLYlogonobg1311.png"
-            alt="Ally Logo"
-            className="logo-image"
-          />
-        </div>
-        <nav className="landing-nav">
-          <a href="#about">Über Ally</a>
-          <a href="#faq">FAQ</a>
-          <Link to="/signup" className="nav-button filled">
-            Sign Up
-          </Link>
-          <Link to="/login" className="nav-button outline">
-            Log In
-          </Link>
-        </nav>
-      </header>
-
+          {/* ───────── HEADER ───────── */}
++      <Header />
+      
       {/* ───────── HERO ───────── */}
       <motion.section
-        className="hero"
-        /* whole section fades in once */
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        {/* background layers */}
-        <img
-          className="hero-bg"
-          src="https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?q=80&w=1374"
-          alt=""
-        />
+  className="hero"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 0.8 }}
+>
+  {/* background layers */}
+  <img
+    className="hero-bg"
+    src="https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?q=80&w=1374"
+    alt=""
+  />
 
-        {/* hand-drawn line with parallax */}
-        <motion.img
-          className="hero-line"
-          src="https://health-covery.com/wp-content/uploads/2025/05/doodle_scribble_lines-1.png"
-          alt=""
-          role="presentation"
-          style={{ y: lineY }}
-        />
+  <motion.img
+    className="hero-line"
+    src="https://health-covery.com/wp-content/uploads/2025/05/doodle_scribble_lines-1.png"
+    alt=""
+    role="presentation"
+    style={{ y: lineY }}
+  />
 
-        {/* centred content */}
-        <div className="hero-inner">
-          <motion.div
-            className="hero-card"
-            /* card slides up + fades in */
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          >
-            <div className="card-content">
-              <h1>Dein&nbsp;Alltagsbegleiter&nbsp;für&nbsp;CED</h1>
-              <p>
-                Mit Ally bist du stets informiert über deinen Verlauf – alle
-                Werte auf einen Blick.
-              </p>
-              <button className="primary">Jetzt loslegen</button>
-            </div>
+  <div className="hero-inner">
+    {/* phone mock-up – ABOVE the card, centered */}
+    <motion.img
+      className="card-phone"
+      src="https://health-covery.com/wp-content/uploads/2025/05/mockup-start-page-1.png"
+      alt="Ally-App Mock-up"
+      loading="lazy"
+      initial={{ rotate: -14, scale: 0.9, opacity: 0 }}
+      animate={{ rotate: 0, scale: 1, opacity: 1 }}
+      transition={{
+        type: "spring",
+        stiffness: 140,
+        damping: 18,
+        delay: 0.6,
+      }}
+    />
 
-            {/* phone mock-up springs in and tilts */}
-            <motion.img
-              className="card-phone"
-              src="https://health-covery.com/wp-content/uploads/2025/05/mockup-start-page-1.png"
-              alt="Ally-App Mock-up"
-              loading="lazy"
-              initial={{ rotate: -14, scale: 0.9, opacity: 0 }}
-              animate={{ rotate: 0, scale: 1, opacity: 1 }}
-              transition={{
-                type: "spring",
-                stiffness: 140,
-                damping: 18,
-                delay: 0.6,
-              }}
-            />
-          </motion.div>
-        </div>
-      </motion.section>
+    {/* hero-card underneath the phone */}
+    <motion.div
+      className="hero-card"
+      initial={{ y: 40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+    >
+      <div className="card-content">
+        <h1>Dein&nbsp;Alltagsbegleiter&nbsp;für&nbsp;CED</h1>
+        <p>
+          Mit Ally bist du stets informiert über deinen Verlauf – alle
+          Werte auf einen Blick.
+        </p>
+        <button className="primary">Jetzt loslegen</button>
+      </div>
+    </motion.div>
+  </div>
+</motion.section>
 
-      {/* ───────── INTRO SECTION ───────── */}
+{/* ───────── INTRO SECTION ───────── */}
 <section className="intro">
   <div className="intro-inner">
     {/* copywriting – left column */}
     <div className="intro-text">
       <h2>Willkommen&nbsp;bei&nbsp;Ally</h2>
       <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur.
       </p>
       <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
       </p>
     </div>
 
@@ -117,7 +99,6 @@ const LandingPage = () => {
     </div>
   </div>
 </section>
-
 
       {/* ───────── FEATURES ───────── */}
       <section className="features">
