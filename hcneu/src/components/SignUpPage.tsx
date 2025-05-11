@@ -1,8 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './SignUpPage.css';
+// src/components/SignUpPage.tsx
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./SignUpPage.css";
 
 const SignUpPage: React.FC = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+
+  /** simple handler – later you’ll probably call an API */
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    /* very light validation */
+    if (!email.trim()) {
+      alert("Bitte gib eine gültige E-Mail ein.");
+      return;
+    }
+
+    /* you could stash the mail in localStorage / context here */
+    // localStorage.setItem("userEmail", email);
+
+    /* go to first questionnaire step */
+    navigate("/questionnaire");
+  };
+
   return (
     <div className="sign-up-page">
       {/* ——— Logo ——— */}
@@ -23,13 +44,15 @@ const SignUpPage: React.FC = () => {
             <h1>Willkommen bei Ally</h1>
             <h2>Melde dich an</h2>
 
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form onSubmit={onSubmit}>
               <div className="input-field">
                 <input
                   type="email"
                   placeholder="Deine E-Mail"
-                  required
                   aria-label="E-Mail-Adresse"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
 
@@ -37,7 +60,13 @@ const SignUpPage: React.FC = () => {
                 <button type="submit" className="sign-up-btn">
                   Sign Up
                 </button>
-                <button type="button" className="insurance-code-btn">
+
+                {/* you can wire this later */}
+                <button
+                  type="button"
+                  className="insurance-code-btn"
+                  onClick={() => alert("Feature coming soon 🙂")}
+                >
                   Code deiner Krankenkasse?
                 </button>
               </div>

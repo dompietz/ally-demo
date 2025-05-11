@@ -1,68 +1,62 @@
-import { useState } from "react";
+// src/components/Header.tsx
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => setIsOpen((x) => !x);
+  const [isOpen, setIsOpen]   = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const toggleMenu = () => setIsOpen(x => !x);
+
+  /* ✅  observe the sentinel instead of window.scrollY */
+  useEffect(() => {
+    const sentinel = document.getElementById("top-sentinel");
+    if (!sentinel) return;                       // should never happen
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setScrolled(!entry.isIntersecting),
+      { root: null, threshold: 0 }
+    );
+    observer.observe(sentinel);
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <header className="header">
+    <header className={`header${scrolled ? " header--scrolled" : ""}`}>
       <div className="header__inner">
-        {/* ─── Logo now links to “/” ─── */}
-        <div className="header__logo">
-          <Link to="/">
-            <img
-              src="https://health-covery.com/wp-content/uploads/2025/05/ALLYlogonobg1311.png"
-              alt="Ally Logo"
-            />
-          </Link>
-        </div>
+        <Link className="header__logo" to="/">
+          <img
+            src="https://health-covery.com/wp-content/uploads/2025/05/ALLYlogonobg1311.png"
+            alt="Ally Logo"
+          />
+        </Link>
 
-        {/* desktop nav */}
         <nav className="header__nav--desktop">
           <a href="#about">Über Ally</a>
           <a href="#faq">FAQ</a>
           <Link to="/signup" className="nav-button filled">
-            Sign Up
-          </Link>
-          <Link to="/login" className="nav-button outline">
-            Log In
-          </Link>
+  Sign Up
+</Link>
+          <Link to="/login"  className="nav-button outline">Log In</Link>
         </nav>
 
-        {/* hamburger toggle */}
         <button
-          className={`header__hamburger${isOpen ? " is-open" : ""}`}
+          className={`header__hamburger ${isOpen ? "is-open" : ""}`}
           onClick={toggleMenu}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-label="Toggle menu"
         >
-          <span />
-          <span />
-          <span />
+          <span/><span/><span/>
         </button>
       </div>
 
-      {/* full-screen mobile overlay */}
-      <div className={`header__mobile-menu${isOpen ? " is-open" : ""}`}>
-        {/* close button inside the overlay */}
-        <button
-          className="header__close"
-          onClick={toggleMenu}
-          aria-label="Close menu"
-        >
-          ×
-        </button>
-
+      <div className={`header__mobile-menu ${isOpen ? "is-open" : ""}`}>
+        <button className="header__close" onClick={toggleMenu}>×</button>
         <nav className="header__nav--mobile">
-          <a onClick={toggleMenu} href="#about">Über Ally</a>
-          <a onClick={toggleMenu} href="#faq">FAQ</a>
-          <Link onClick={toggleMenu} to="/signup" className="nav-button filled">
-            Sign Up
-          </Link>
-          <Link onClick={toggleMenu} to="/login" className="nav-button outline">
-            Log In
-          </Link>
+          <a href="#about" onClick={toggleMenu}>Über Ally</a>
+          <a href="#faq"   onClick={toggleMenu}>FAQ</a>
+          <Link to="/signup" className="nav-button filled"  onClick={toggleMenu}>Sign Up</Link>
+          <Link to="/login"  className="nav-button outline" onClick={toggleMenu}>Log In</Link>
         </nav>
       </div>
     </header>

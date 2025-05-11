@@ -1,0 +1,24 @@
+/* centres everything & keeps same font */
+.loading-scene{
+    min-height: calc(100vh - 120px);          /* respects fixed header */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    padding-top: 80px;
+  }
+  
+  /* SVG size adapts fluidly */
+  .loading-line{
+    width: min(90vw, 420px);
+    height: auto;
+  }
+  
+  /* caption */
+  .loading-caption{
+    font: 600 1.15rem/1.4 "IBM Plex Sans", sans-serif;
+    text-align: center;
+    color:#000;
+  }
+  

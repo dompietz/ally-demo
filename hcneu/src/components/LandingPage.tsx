@@ -1,4 +1,5 @@
-//import { Link } from "react-router-dom";
+// src/components/LandingPage.tsx
+// import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./LandingPage.css";
 import Header from "./Header";
@@ -9,8 +10,11 @@ const LandingPage = () => {
 
   return (
     <div className="landing-container">
-          {/* ───────── HEADER ───────── */}
-+      <Header />
+      {/* ───── sentinel (1 px tall, invisible) ───── */}
+      <div id="top-sentinel" style={{ height: 1 }} />
+
+      {/* ───────── HEADER ───────── */}
+      <Header />
       
       {/* ───────── HERO ───────── */}
       <motion.section
@@ -165,7 +169,7 @@ const LandingPage = () => {
 
       {/* ───────── FAQ ───────── */}
 {/* ───────── FAQ ───────── */}
-<section className="faq">
+<section id="faq" className="faq">
   <h2>Häufig gestellte Fragen</h2>
 
   <details className="faq-item">
