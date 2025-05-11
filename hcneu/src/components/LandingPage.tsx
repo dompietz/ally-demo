@@ -121,19 +121,33 @@ const LandingPage = () => {
 
       {/* ───────── FEATURES ───────── */}
       <section className="features">
-        {Array.from({ length: 3 }).map((_, idx) => (
-          <div key={idx} className="feature-tile image">
-            <img
-              src="https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?q=80&w=1374"
-              alt="Forest im Morgenlicht"
-            />
-            <div className="content">
-              <h3>Überblick über Wohlbefinden</h3>
-              <p>Das hier ist eine Kurzbeschreibung</p>
-            </div>
-          </div>
-        ))}
-      </section>
+  {[
+    {
+      title: "Überblick über Wohlbefinden",
+      description: "Tracke Symptome, Ernährung, Stresslevel uvm.",
+      image: "https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?q=80&w=1374",
+    },
+    {
+      title: "Deine persönliche Bibliothek",
+      description: "Erhalte Artikel, Tipps und Übungen – auf dich abgestimmt.",
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1374",
+    },
+    {
+      title: "Export für Arzttermine",
+      description: "Exportiere deine Daten als PDF und behalte den Überblick.",
+      image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1374",
+    },
+  ].map((tile, idx) => (
+    <div key={idx} className="feature-tile image">
+      <img src={tile.image} alt={tile.title} />
+      <div className="content">
+        <h3>{tile.title}</h3>
+        <p>{tile.description}</p>
+      </div>
+    </div>
+  ))}
+</section>
+
 
       {/* ───────── PRICING ───────── */}
       <section className="pricing">
