@@ -1,0 +1,503 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  width: 100vw;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background: #ffffff;
+}
+
+.landing-container {
+  width: 100vw;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ───────────────── HEADER ───────────────── */
+.landing-header {
+  position: fixed;
+  inset: 0 0 auto 0;        /* top:0 right:0 left:0 */
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,.05);
+  z-index: 999;
+}
+
+.logo-container img {height: 70px;}
+
+.landing-nav {
+  display:flex;
+  gap:16px;
+  font-size:.9rem;
+  align-items:center;
+}
+.landing-nav a{color:#000;text-decoration:none;}
+
+.nav-button{padding:8px 18px;border-radius:20px;font:500 .9rem/1 'IBM Plex Sans',sans-serif;}
+.nav-button.filled{background:#9B91D9;color:#fff;}
+.nav-button.outline{background:transparent;color:#000;border:2px solid #9B91D9;}
+
+/* ───────────────── HERO ───────────────── */
+/* ───────────────── HERO ───────────────── */
+.hero{
+  position:relative;
+  height:90vh;               /* full screen */
+  margin-top:80px;            /* offset fixed header */
+  overflow:hidden;
+  display:flex;
+  align-items: center;
+}
+
+/* background layers */
+.hero-bg,
+.hero-line{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  pointer-events:none;
+}
+.hero-bg  { z-index:0; }
+.hero-line{ z-index:1; }
+
+/* ───────── animated hero line ───────── */
+.hero-line{
+  /* existing positioning rules remain intact
+     (position:absolute; inset:0; width/height:100%; object-fit:cover; pointer-events:none; z-index:1) */
+
+  will-change: transform;
+  animation: heroLineFloat 40s ease-in-out infinite;
+}
+
+/* keyframes: gentle vertical drift + tiny scale pulse */
+@keyframes heroLineFloat{
+  0%   { transform: translateY(-4%) scale(1.03); }
+  50%  { transform: translateY( 4%) scale(1.00); }
+  100% { transform: translateY(-4%) scale(1.03); }
+}
+
+/* honour OS-level motion preferences */
+@media (prefers-reduced-motion: reduce){
+  .hero-line{ animation:none; }
+}
+
+
+/* flex wrapper */
+.hero-inner{
+  position:relative;          /* stacking context for foreground */
+  z-index:2;                  /* above background layers        */
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 2rem;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start; /* card on the left               */
+  flex-wrap:wrap;
+}
+
+/* ───────── WHITE CARD ───────── */
+.hero-card{
+  position:relative;          /* phone anchors here             */
+  overflow:visible;           /* allow it to “poke out”         */
+  background:#fff;
+  border-radius:24px;
+  box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+  /* text padding + reserved space for phone on the right        */
+  padding:3rem 4rem;
+  padding-right:calc(340px + 4rem);   /* 340 px = phone width     */
+
+  /* fluid width so both text and phone stay inside the card     */
+  flex:1 1 clamp(540px,60vw,960px);
+}
+
+/* typography inside the card */
+.hero-card h1{
+  font-size:clamp(1.8rem,4vw,3rem);
+  margin-bottom:1rem;
+  color:#000;
+}
+.hero-card p{
+  font-size:clamp(1rem,2vw,1.25rem);
+  margin-bottom:2rem;
+  color: #000;
+}
+
+/* primary CTA button */
+.hero-card .primary{
+  padding:.9rem 2.2rem;
+  font-weight:600;
+  border-radius:9999px;
+  border:2px solid #a6a4ff;
+  background:#fff;
+  cursor:pointer;
+  transition:all .25s ease;
+}
+.hero-card .primary:hover{
+  background:#a6a4ff;
+  color:#fff;
+}
+
+/* ───────── PHONE MOCK-UP ───────── */
+.card-phone{                       /* IMG is now inside .hero-card */
+  position:absolute;               /* anchored to the card         */
+  right:-4.5rem;                    /* same as card’s inner gap     */
+  bottom:-100px;                    /* lets it “emerge” below       */
+  width:340px;
+  transform:rotate(0deg);
+  pointer-events:none;             /* purely decorative            */
+  display:block;
+}
+
+/* ───────── RESPONSIVE TWEAKS ───────── */
+@media (max-width:800px){
+  .hero-inner{
+    flex-direction:column;         /* stack vertically            */
+    align-items:center;
+    gap:2rem;
+    min-height: 100%;
+  }
+
+  .hero-card{
+    padding:2.5rem 2rem;           /* tighter padding             */
+    padding-right:2rem;            /* no reserved space on mobile */
+    flex:1 1 100%;                 /* full-width card             */
+  }
+
+  .card-phone{
+    position:static;               /* flows after the card        */
+    width:260px;
+    transform:none;
+    margin-top:1.5rem;             /* breathing room              */
+  }
+}
+
+/* ───────────────── INTRO ───────────────── */
+.intro{
+  width:100vw;
+  padding:120px 20px;
+  background:linear-gradient(135deg,#ffffff 0%,#eeecff 100%);
+}
+
+.intro-inner{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  gap:60px;
+  flex-wrap:wrap;                 /* stacks on small screens */
+}
+
+/* left column */
+.intro-text{
+  flex:1 1 420px;
+  text-align:left;
+}
+.intro-text h2{
+  font-size:2rem;
+  font-weight:700;
+  margin-bottom:24px;
+  color:#000;
+}
+.intro-text p{
+  font-size:1.05rem;
+  line-height:1.7;
+  color:#000;
+  margin-bottom:16px;
+}
+
+/* right column */
+.intro-img-wrapper{
+  flex:1 1 420px;
+  display:flex;
+  justify-content:center;
+}
+.intro-img-wrapper img{
+  width:100%;
+  max-width:460px;
+  height:auto;
+  object-fit:cover;
+  border-radius:0% 0% 0% 0% / 0% 0% 0% 0%; /* organic “blob” */
+  box-shadow:0 0px 0px rgba(0,0,0,.12);
+}
+
+/* ───────── responsive tweak ───────── */
+@media(max-width:800px){
+  .intro{padding:80px 20px;}
+  .intro-inner{gap:40px;}
+  .intro-img-wrapper img{max-width:340px;}
+}
+
+
+/* ───────────────── FEATURES ───────────────── */
+.features{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  padding:80px 20px;
+  flex-wrap:wrap;
+  background:linear-gradient(180deg,#fff 0%,#f4f4ff 100%);
+  width:100vw;
+}
+
+.feature-tile{
+  width:250px;
+  min-height:350px;
+  border-radius:16px;
+  padding:16px;                    /* default interior spacing   */
+  background:#fff;
+  box-shadow:0 4px 12px rgba(0,0,0,.06);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  text-align:left;
+}
+
+/* colour variants (unchanged) */
+.feature-tile.red  {background:#c1c1c1;color:#1c1b1b;}
+.feature-tile.blue {background:#bababa;color:#1c1b1b;}
+
+/* ─────────── image-first variant ─────────── */
+.feature-tile.image{               /* strip the general padding  */
+  padding:0;
+}
+
+.feature-tile.image img{
+  display:block;                   /* eliminate inline gap       */
+  width:100%;                      /* flush with tile edges      */
+  height:120px;                    /* or use aspect-ratio later  */
+  object-fit:cover;
+  border-radius:16px 16px 0 0;     /* match tile’s rounding      */
+  margin-bottom:0;                 /* spacing handled elsewhere  */
+}
+
+.feature-tile.image .content{      /* wrap text nodes in a div   */
+  padding:16px;                    /* restore spacing for text   */
+}
+
+
+/* ───────────────── PRICING ───────────────── */
+.pricing {
+  width: 100vw;
+  padding: 100px 20px;
+  text-align: center;
+  background: linear-gradient(180deg, #f4f4ff 0%, #eaffea 100%);
+}
+
+.pricing h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 48px;
+  color: #000;
+}
+
+/* desktop: two columns →  feature list + two tiles */
+.pricing-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;              /* generous space between columns */
+}
+
+/* ① left column  – feature bullets */
+.pricing-features {
+  flex: 0 0 32%;          /* ~ half width */
+  text-align: left;
+}
+
+.pricing-features h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #000;
+}
+
+.pricing-features ul {
+  list-style: disc inside;
+  line-height: 1.8;
+  color: #000000;
+  font-size: 1.05rem;
+}
+
+/* ② right column  – pricing cards side-by-side */
+.pricing-tiles {
+  flex: 0 0 48%;          /* ~ half width */
+  display: flex;
+  gap: 32px;
+}
+
+.pricing-tile {
+  flex: 1 1 0;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px 28px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pricing-tile h4   { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; color:#000 }
+.pricing-tile p    { font-size: 1.1rem; margin-bottom: 4px; color:#000 }
+.pricing-tile small{ font-size: 0.8rem; color:#000000; }
+
+.pricing-tile button {
+  margin-top: 20px;
+  padding: 12px 32px;
+  font-size: 1rem;
+  border-radius: 30px;
+  border: 2px solid #9B91D9;
+  background: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+.pricing-tile button:hover {
+  background: #3c9842;
+}
+
+/* ───────────── 30-day text under button ───────────── */
+.pricing-tile span {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: #000000;
+}
+
+/* ───────────────── Responsive ───────────────── */
+@media (max-width: 900px) {
+  .pricing-content {
+    flex-direction: column;
+    gap: 48px;
+    align-items: center;
+  }
+  .pricing-features,
+  .pricing-tiles {
+    flex: 1 1 100%;
+    max-width: 540px;
+  }
+  .pricing-tiles {
+    flex-direction: column;        /* stack cards vertically */
+    gap: 24px;
+  }
+}
+
+/* ───────────────── FAQ ───────────────── */
+.faq{
+  width:100vw;
+  padding:100px 20px;
+  background:#ffffff;
+  text-align:center;
+}
+
+.faq h2{
+  font-size:2rem;
+  font-weight:700;
+  margin-bottom:48px;
+  color:#000;
+}
+
+/* accordion shell */
+.faq-item{
+  max-width:800px;
+  margin:0 auto 20px;
+  border-radius:8px;
+  background:#f7f7ff;
+  box-shadow:0 2px 6px rgba(0,0,0,.05);
+  overflow:hidden;               /* hides the body while collapsed */
+}
+
+/* clickable header */
+.faq-item summary{
+  padding:18px 24px;
+  font-size:1.1rem;
+  font-weight:600;
+  cursor:pointer;
+  list-style:none;               /* remove default marker */
+  position:relative;
+  user-select:none;
+}
+
+/* custom chevron */
+.faq-item summary::after{
+  content:"";
+  position:absolute;
+  right:24px;
+  top:50%;
+  width:10px;
+  height:10px;
+  border-right:2px solid #666;
+  border-bottom:2px solid #666;
+  transform:translateY(-50%) rotate(45deg);
+  transition:.25s;
+}
+.faq-item[open] summary::after{
+  transform:translateY(-50%) rotate(225deg);
+}
+
+/* hover / focus highlight */
+.faq-item summary:hover,
+.faq-item summary:focus{
+  background:#ecebff;
+  outline:none;
+}
+
+/* ───────── animated body ───────── */
+.faq-body{
+  max-height:0;                  /* collapsed */
+  overflow:hidden;
+  padding:0 24px;                /* keep horizontal padding */
+  opacity:0;
+  transition:
+    max-height .4s ease,
+    opacity    .3s ease,
+    padding    .4s ease;
+}
+
+/* expanded state */
+.faq-item[open] .faq-body{
+  max-height:600px;              /* sufficiently large for most answers */
+  padding:12px 24px 24px;
+  opacity:1;
+}
+
+/* body typography */
+.faq-body p{
+  font-size:1rem;
+  line-height:1.7;
+  color:#000;
+}
+
+/* respect motion preferences */
+@media (prefers-reduced-motion: reduce){
+  .faq-body{ transition:none; }
+}
+
+
+/* ───────────────── FOOTER ───────────────── */
+.landing-footer{background:#a8dbc6;padding:40px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;color:#333;width:100vw; min-height: 20vh;}
+.footer-left img{height:60px;margin-bottom:8px;}
+.footer-columns{display:flex;gap:40px;flex-wrap:wrap;font-size:.85rem;}
+.footer-columns h4{font-weight:700;margin-bottom:8px;}
+.footer-columns p{margin-bottom:6px;}
+
+/* ───────────────── MEDIA ───────────────── */
+@media(max-width:768px){
+  .pricing-content{flex-direction:column;align-items:center;gap:40px;}
+  .pricing-tiles{flex-direction:row;gap:20px;}
+  .pricing-tile{flex:1;}
+  .features{padding:60px 20px;}
+}

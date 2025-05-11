@@ -1,0 +1,137 @@
+/* ───────────── Root wrapper ───────────── */
+.sign-up-page {
+  /* soft violet-to-grey diagonal */
+  background: linear-gradient(135deg,
+              rgba(147, 112, 219, 0.40),
+              rgba(144, 144, 144, 0.21));
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;   /* logo on top, tile in middle */
+  align-items: center;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+/* ───────────── Logo header ───────────── */
+.sign-up-logo-header {
+  padding: 10px 0 20px;
+  text-align: center;
+}
+.sign-up-logo-header img {
+  height: 60px;
+}
+
+/* ───────────── Tile wrapper ───────────── */
+.sign-up-content-wrapper {
+  flex: 1;                        /* push footer (if any) down */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ───────────── Sign-up tile ───────────── */
+.sign-up-tile {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+  display: flex;
+  gap: 40px;
+  padding: 24px;
+  max-width: 840px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sign-up-content {
+  flex: 1;
+  max-width: 460px;
+}
+
+.sign-up-image {
+  flex-shrink: 0;
+  width: 350px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Headings */
+.sign-up-content h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+.sign-up-content h2 {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Form */
+.input-field input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+/* Buttons group */
+.sign-up-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.sign-up-btn {
+  background: #ffffff;
+  color: #000;
+  border: 2px solid #9B91D9;
+  border-radius: 30px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.sign-up-btn:hover {
+  background: #e8e8e8;
+}
+
+.insurance-code-btn {
+  background: transparent;
+  border: none;
+  color: #000;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.insurance-code-btn:hover {
+  text-decoration: underline;
+}
+
+/* ───────────── Responsive tweaks ───────────── */
+@media (max-width: 768px) {
+  .sign-up-tile {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px;
+  }
+
+  .sign-up-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin-top: 20px;
+  }
+
+  .sign-up-buttons {
+    justify-content: center;
+  }
+
+  .sign-up-content h1,
+  .sign-up-content h2 {
+    text-align: center;
+  }
+}
