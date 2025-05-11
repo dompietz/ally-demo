@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import Step1 from "./Step1_Welcome";
 import Step2 from "./Step2_Topics";
 import Step3 from "./Step3_Disclaimer";
