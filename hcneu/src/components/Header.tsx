@@ -21,7 +21,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`header${scrolled ? " header--scrolled" : ""}`}>
+    <header className={`header${scrolled ? " header--scrolled" : " header--transparent"}`}>
       <div className="header__inner">
         <Link className="header__logo" to="/">
           <picture>

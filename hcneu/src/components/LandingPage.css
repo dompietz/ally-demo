@@ -50,27 +50,41 @@ body {
 
 /* ───────────────── HERO ───────────────── */
 /* ───────────────── HERO ───────────────── */
-.hero{
-  position:relative;
-  height:95vh;               /* full screen */
-  margin-top:0px;            /* offset fixed header */
-  overflow:hidden;
-  display:flex;
+.hero {
+  position: relative;
+  height: 95vh;
+  margin-top: 0px;
+  overflow: hidden;
+  display: flex;
   align-items: center;
 }
 
 /* background layers */
 .hero-bg,
-.hero-line{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  pointer-events:none;
+.hero-line,
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  object-fit: cover;
 }
-.hero-bg  { z-index:0; }
-.hero-line{ z-index:1; }
+
+/* layering */
+.hero-bg      { z-index: 0; }
+.hero-overlay { z-index: 1; }  /* new color overlay layer */
+.hero-line    { z-index: 2; }
+
+/* optional: overlay tint color */
+.hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25),   /* top: more visible */
+    rgba(155, 145, 217, 0.10),   /* mid: softer */
+    rgba(155, 145, 217, 0.00)    /* bottom: transparent */
+  );
+}
 
 /* ───────── animated hero line ───────── */
 .hero-line{

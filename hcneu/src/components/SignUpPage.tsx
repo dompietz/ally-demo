@@ -41,6 +41,21 @@ const SignUpPage: React.FC = () => {
         <div className="sign-up-tile">
           {/* LEFT: copy & form */}
           <div className="sign-up-content">
+          <div className="sign-up-progress">
+  <div className="progress-step active">
+    <div className="circle">1</div>
+    <span>Anmelden</span>
+  </div>
+  <div className="progress-step">
+    <div className="circle">2</div>
+    <span>Fragebogen</span>
+  </div>
+  <div className="progress-step">
+    <div className="circle">3</div>
+    <span>Los geht's</span>
+  </div>
+</div>
+
             <h1>Willkommen bei Ally</h1>
             <h2>Melde dich an</h2>
 

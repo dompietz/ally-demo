@@ -29,6 +29,7 @@ const LandingPage = () => {
     src="https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?q=80&w=1374"
     alt=""
   />
+  <div className="hero-overlay" />
 
   <motion.img
     className="hero-line"
