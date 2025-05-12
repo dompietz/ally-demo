@@ -380,22 +380,37 @@ body {
   font-size: 1.05rem;
 }
 
-/* ② right column  – pricing cards side-by-side */
+/* ② right column – pricing cards side-by-side */
 .pricing-tiles {
-  flex: 0 0 48%;          /* ~ half width */
+  flex: 0 0 48%;
   display: flex;
   gap: 32px;
+  flex-wrap: wrap;
 }
 
+/* Pricing tile card */
 .pricing-tile {
   flex: 1 1 0;
   background: #ffffff;
   border-radius: 16px;
   padding: 40px 28px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* 🔽 Mobile layout: stack tiles vertically */
+@media (max-width: 768px) {
+  .pricing-tiles {
+    flex-direction: column;
+    gap: 24px;
+    flex: 1 1 100%;
+  }
+
+  .pricing-tile {
+    width: 100%;
+  }
 }
 
 .pricing-tile h4   { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; color:#000 }
