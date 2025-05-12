@@ -52,7 +52,7 @@ body {
 /* ───────────────── HERO ───────────────── */
 .hero{
   position:relative;
-  height:90vh;               /* full screen */
+  height:95vh;               /* full screen */
   margin-top:0px;            /* offset fixed header */
   overflow:hidden;
   display:flex;
@@ -142,12 +142,13 @@ body {
   border-radius:9999px;
   border:2px solid #a6a4ff;
   background:#fff;
+  color:#000;
   cursor:pointer;
   transition:all .25s ease;
 }
 .hero-card .primary:hover{
   background:#a6a4ff;
-  color:#fff;
+  color:#443e3e;
 }
 
 /* ───────── PHONE MOCK-UP ───────── */

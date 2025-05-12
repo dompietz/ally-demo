@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 
 export default function Header() {
-  const [isOpen, setIsOpen]   = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const toggleMenu = () => setIsOpen(x => !x);
 
-  /* ✅  observe the sentinel instead of window.scrollY */
   useEffect(() => {
     const sentinel = document.getElementById("top-sentinel");
-    if (!sentinel) return;                       // should never happen
+    if (!sentinel) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => setScrolled(!entry.isIntersecting),
@@ -23,22 +22,24 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`header${scrolled ? " header--scrolled" : ""}`}>
+    <header className={`header${scrolled ? " header--scrolled" : " header--transparent"}`}>
       <div className="header__inner">
         <Link className="header__logo" to="/">
           <img
-            src="https://health-covery.com/wp-content/uploads/2025/05/ALLYlogonobg1311.png"
+            src={
+              scrolled
+                ? "https://health-covery.com/wp-content/uploads/2025/05/ALLYlogonobg1311.png"
+                : "https://health-covery.com/wp-content/uploads/2025/05/ALLYlogo-white.png"
+            }
             alt="Ally Logo"
           />
         </Link>
 
         <nav className="header__nav--desktop">
-          <a href="#about">Über Ally</a>
-          <a href="#faq">FAQ</a>
-          <Link to="/signup" className="nav-button filled">
-  Sign Up
-</Link>
-          <Link to="/login"  className="nav-button outline">Log In</Link>
+          <a href="#about" className={!scrolled ? "white-text" : ""}>Über Ally</a>
+          <a href="#faq" className={!scrolled ? "white-text" : ""}>FAQ</a>
+          <Link to="/signup" className="nav-button filled">Sign Up</Link>
+          <Link to="/login" className="nav-button outline">Log In</Link>
         </nav>
 
         <button
@@ -46,7 +47,7 @@ export default function Header() {
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
-          <span/><span/><span/>
+          <span /><span /><span />
         </button>
       </div>
 
@@ -54,9 +55,9 @@ export default function Header() {
         <button className="header__close" onClick={toggleMenu}>×</button>
         <nav className="header__nav--mobile">
           <a href="#about" onClick={toggleMenu}>Über Ally</a>
-          <a href="#faq"   onClick={toggleMenu}>FAQ</a>
-          <Link to="/signup" className="nav-button filled"  onClick={toggleMenu}>Sign Up</Link>
-          <Link to="/login"  className="nav-button outline" onClick={toggleMenu}>Log In</Link>
+          <a href="#faq" onClick={toggleMenu}>FAQ</a>
+          <Link to="/signup" className="nav-button filled" onClick={toggleMenu}>Sign Up</Link>
+          <Link to="/login" className="nav-button outline" onClick={toggleMenu}>Log In</Link>
         </nav>
       </div>
     </header>

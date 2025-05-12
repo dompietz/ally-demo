@@ -3,7 +3,7 @@
   position: fixed;
   inset: 0 0 auto 0;
   height: 80px;
-  background: transparent;          /* start transparent */
+  background: transparent;
   box-shadow: none;
   transition: background .35s ease, box-shadow .35s ease;
   z-index: 1000;
@@ -14,7 +14,17 @@
   background: rgba(255, 255, 255, 1) !important;
 }
 
-
+/* transparent state */
+.header--transparent .header__nav--desktop a {
+  color: white;
+}
+.header--transparent .nav-button.outline {
+  color: white;
+  border-color: white;
+}
+.header--transparent .header__hamburger span {
+  background: white;
+}
 
 /* force white on small screens for contrast */
 @media (max-width: 800px) {
@@ -25,7 +35,7 @@
 }
 
 /* inner flex wrapper */
-.header__inner{
+.header__inner {
   max-width: 1440px;
   margin: 0 auto;
   height: 100%;
@@ -36,33 +46,111 @@
 }
 
 /* logo */
-.header__logo img{height:70px}
+.header__logo img {
+  height: 70px;
+}
 
 /* desktop nav */
-.header__nav--desktop{display:flex;gap:1rem;align-items:center}
+.header__nav--desktop {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
 
 /* buttons */
-.nav-button{padding:8px 18px;border-radius:20px;font:500 .9rem/1 "IBM Plex Sans",sans-serif}
-.nav-button.filled{background:#9B91D9;color:#fff}
-.nav-button.outline{background:transparent;color:#000;border:2px solid #9B91D9}
+.nav-button {
+  padding: 8px 18px;
+  border-radius: 20px;
+  font: 500 .9rem/1 "IBM Plex Sans", sans-serif;
+}
+.nav-button.filled {
+  background: #9B91D9;
+  color: #fff;
+}
+.nav-button.outline {
+  background: transparent;
+  color: #000;
+  border: 2px solid #9B91D9;
+}
 
 /* hamburger */
-.header__hamburger{display:none;background:none;border:none;cursor:pointer;padding:.5rem;flex-direction:column;gap:4px}
-.header__hamburger span{width:24px;height:2px;background:#333;transition:transform .3s,opacity .3s}
-.header__hamburger.is-open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
-.header__hamburger.is-open span:nth-child(2){opacity:0}
-.header__hamburger.is-open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.header__hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: .5rem;
+  flex-direction: column;
+  gap: 4px;
+}
+.header__hamburger span {
+  width: 24px;
+  height: 2px;
+  background: #333;
+  transition: transform .3s, opacity .3s;
+}
+.header__hamburger.is-open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.header__hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.header__hamburger.is-open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
 
 /* full-screen overlay */
-.header__mobile-menu{position:fixed;inset:0;background:rgba(255,255,255,.95);transform:translateY(-100%);transition:transform .3s ease;display:flex;align-items:center;justify-content:center;z-index:999}
-.header__mobile-menu.is-open{transform:translateY(0)}
-.header__close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:2rem;cursor:pointer;color:#333;line-height:1;z-index:1001}
-.header__nav--mobile{display:none;flex-direction:column;gap:1.5rem;text-align:center}
-.header__mobile-menu.is-open .header__nav--mobile{display:flex}
-.header__nav--mobile a,.header__nav--mobile .nav-button{font-size:1.2rem}
+.header__mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,.95);
+  transform: translateY(-100%);
+  transition: transform .3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.header__mobile-menu.is-open {
+  transform: translateY(0);
+}
+.header__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+  line-height: 1;
+  z-index: 1001;
+}
+.header__nav--mobile {
+  display: none;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+}
+.header__mobile-menu.is-open .header__nav--mobile {
+  display: flex;
+}
+.header__nav--mobile a,
+.header__nav--mobile .nav-button {
+  font-size: 1.2rem;
+}
 
 /* show hamburger, hide desktop nav on ≤800 px */
-@media (max-width:800px){
-  .header__nav--desktop{display:none}
-  .header__hamburger{display:flex}
+@media (max-width: 800px) {
+  .header__nav--desktop {
+    display: none;
+  }
+  .header__hamburger {
+    display: flex;
+  }
+}
+
+/* optional utility */
+.white-text {
+  color: white !important;
 }

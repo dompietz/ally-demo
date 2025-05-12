@@ -5,11 +5,6 @@ import { FiPlus, FiSettings } from "react-icons/fi";
 export default function DashboardPage() {
   return (
     <main className="dash-wrapper">
-      {/* ───────── TOP BAR ───────── */}
-      <header className="dash-top">
-        <span className="dash-breadcrumb">Homescreen&nbsp;/&nbsp;Dashboard</span>
-      </header>
-
       {/* ───────── GREETING ───────── */}
       <section className="dash-hero">
         <div>

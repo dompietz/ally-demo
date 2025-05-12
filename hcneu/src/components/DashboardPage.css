@@ -1,6 +1,6 @@
 /* page shell */
 .dash-wrapper{
-    max-width: 480px;            /* mobile first */
+    max-width: 80%;            /* mobile first */
     margin: 0 auto;
     padding: 0 1.25rem 6rem;     /* space for bottom nav */
     font-family: "IBM Plex Sans", sans-serif;
