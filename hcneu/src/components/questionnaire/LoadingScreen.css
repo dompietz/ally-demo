@@ -1,24 +1,60 @@
 /* centres everything & keeps same font */
-.loading-scene{
-    min-height: calc(100vh - 120px);          /* respects fixed header */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 32px;
-    padding-top: 80px;
+.q-loading {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at 50% 30%, #f5f5ff, #e0e0ff);
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.q-loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.loading-caption {
+  font: 600 1.3rem/1.4 "IBM Plex Sans", sans-serif;
+  color: #333;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  animation: rotate 2s linear infinite;
+}
+
+.loading-circle {
+  stroke: #9b91d9;
+  stroke-linecap: round;
+  stroke-dasharray: 90, 150;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
   }
-  
-  /* SVG size adapts fluidly */
-  .loading-line{
-    width: min(90vw, 420px);
-    height: auto;
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
   }
-  
-  /* caption */
-  .loading-caption{
-    font: 600 1.15rem/1.4 "IBM Plex Sans", sans-serif;
-    text-align: center;
-    color:#000;
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
   }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
   

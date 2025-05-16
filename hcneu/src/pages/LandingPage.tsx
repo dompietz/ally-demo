@@ -2,7 +2,7 @@
 // import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./LandingPage.css";
-import Header from "./Header";
+import Header from "../components/layout/Header";
 
 const LandingPage = () => {
   const { scrollY } = useScroll();
@@ -27,7 +27,7 @@ const LandingPage = () => {
   <img
     className="hero-bg"
     src="https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?q=80&w=1374"
-    alt=""
+    alt="Picture of green forest"
   />
   <div className="hero-overlay" />
 

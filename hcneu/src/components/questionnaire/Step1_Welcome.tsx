@@ -41,12 +41,14 @@ export default function Step1_Welcome({ defaultValues, onNext }: Props) {
 
         {/* ───────── Name ───────── */}
         <p className="quiz-sub">Wie dürfen wir dich nennen?</p>
-        <label className="input-group">
-          <input
-            placeholder="Dein Name"
-            {...register("name", { required: true })}
-          />
-        </label>
+        <div className="input-group">
+  <input
+    type="text"
+    placeholder="Dein Name"
+    {...register("name", { required: true })}
+  />
+</div>
+
 
         {/* ───────── Diagnosis ───────── */}
         <p className="quiz-sub">Welcher Diagnose-Typ trifft zu?</p>

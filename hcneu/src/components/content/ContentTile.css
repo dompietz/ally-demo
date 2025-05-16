@@ -1,0 +1,46 @@
+.content-tile {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    border: solid 1px;
+  border-color: #9B91D9;
+  }
+  
+  .tile-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+  
+  .tile-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .tile-body h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #222;
+  }
+  
+  .tile-body p {
+    font-size: 0.875rem;
+    color: #666;
+  }
+  
+  .tile-button {
+    align-self: start;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #a091d8;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+  }
+  

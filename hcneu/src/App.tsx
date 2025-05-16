@@ -1,9 +1,10 @@
+
 // src/App.tsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LandingPage     from "./components/LandingPage";
-import SignUpPage      from "./components/SignUpPage";
+import LandingPage     from "./pages/LandingPage";
+import SignUpPage      from "./pages/SignUpPage";
 import Questionnaire   from "./components/questionnaire/Questionnaire";
-import DashboardPage   from "./components/DashboardPage";     // ← NEW
+import DashboardPage   from "./pages/DashboardPage";     // ← NEW
 import "./App.css";
 
 function App() {

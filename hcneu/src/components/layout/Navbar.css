@@ -1,0 +1,20 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .navbar-title {
+    font-weight: 600;
+    font-size: 1.125rem;
+  }
+  
+  .navbar-search {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
