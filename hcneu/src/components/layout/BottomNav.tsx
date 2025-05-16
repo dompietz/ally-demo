@@ -1,6 +1,6 @@
 import React from 'react';
 import './BottomNav.css';
-import { Home, Leaf, BarChart3, Compass } from 'lucide-react'; // or use your own icons
+import { Home, BarChart3, Compass } from 'lucide-react'; // or use your own icons
 
 const BottomNav: React.FC = () => {
   return (
