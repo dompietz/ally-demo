@@ -190,16 +190,16 @@ body {
     /* clear desktop-only offsets */
     right: auto !important;
     bottom: auto !important;
-
+   
     /* absolute centering above the card */
     position: absolute;
-    top: -120px;
-    left: 25%;
+    top: -50px;
+    left: 30%;
     transform: translateX(-50%);
     
     /* sizing */
-    width: 200px;
-    max-width: 70%;
+    width: 150px;
+    max-width: 50%;
     
     /* make sure it floats above everything */
     z-index: 10;

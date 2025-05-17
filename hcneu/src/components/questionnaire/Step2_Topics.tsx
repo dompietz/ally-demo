@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import type { Answers } from "./Questionnaire";
-import "./Questionnaire.css";          // ← ① bring in the shared styles
+import "./Questionnaire.css"; // ← ① bring in the shared styles
 
 const allTopics = [
   "Ernährung",
@@ -26,14 +26,12 @@ export default function Step2({ defaultValues, onNext }: Props) {
   const submit = (d: Answers) => onNext({ topics: d.topics });
 
   return (
-    /* ─── ② scene wrapper (+ glow) ─── */
     <div className="quiz-scene">
       <div className="glowing-background">
         <div className="blurred-gradient" />
         <div className="grainy-overlay" />
       </div>
 
-      {/* ─── questionnaire card ─── */}
       <motion.form
         className="quiz-wrapper"
         onSubmit={handleSubmit(submit)}
@@ -45,8 +43,7 @@ export default function Step2({ defaultValues, onNext }: Props) {
         <h1 className="quiz-title">Personalisierung</h1>
         <p className="quiz-sub">Welche&nbsp;Themen interessieren&nbsp;dich?</p>
 
-        {/* ③ topic grid */}
-        <div className="grid-topics">
+        <div className="topics-grid">
           {allTopics.map((t) => (
             <label key={t} className="checkbox-row topic-card">
               <input type="checkbox" value={t} {...register("topics")} />
@@ -59,7 +56,6 @@ export default function Step2({ defaultValues, onNext }: Props) {
           Weiter
         </button>
 
-        {/* progress bar – 2 / 3 */}
         <div className="quiz-progress">
           <span style={{ "--percent": "66%" } as React.CSSProperties} />
         </div>

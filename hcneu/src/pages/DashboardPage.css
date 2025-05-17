@@ -80,12 +80,37 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
+  color: #000;
 }
 
 .dashboard-header p {
   color: #555;
   max-width: 600px;
 }
+.dashboard-header {
+  width: 100%;
+  background: white;
+  padding: 1rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  min-height: 150px;
+}
+
+.dashboard-header-inner {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
 
 /* Overview Section */
 .overview-section-box {
@@ -108,6 +133,7 @@
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: space-between;
+  width: 100%;
 }
 
 .view-analyses-btn {
@@ -122,6 +148,7 @@
   border-radius: 30px;
   cursor: pointer;
   width: 100%;
+  height: 50px;
 }
 
 /* Content Section */
@@ -146,6 +173,7 @@
   flex-wrap: wrap;
   gap: 1.5rem;
   justify-content: space-between;
+  width: 100%;
 }
 
 /* Responsive */
@@ -153,7 +181,7 @@
   .overview-cards,
   .content-tiles {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
   }
 
   .view-analyses-btn {
@@ -175,31 +203,56 @@
   min-width: 240px;
 }
 
+/* ────────── PROFILE SECTION ────────── */
 .profile-section {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
+.profile-avatar-wrapper {
+  display: flex;
+  flex-direction: column; /* stack vertically */
+  align-items: center;     /* center horizontally */
+  gap: 1rem;
+  width: auto;             /* adapt width */
+}
+
 .profile-avatar {
-  width: 48px;
-  height: 48px;
+  width: 50%;
+  height: 50%;
   border-radius: 9999px;
   object-fit: cover;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+.settings-text-btn {
+  background: #fff;
+  border: solid 1px #9B91D9;
+  color: #555;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 8px;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  align-self: center;
+  border-radius: 30px;
+}
+
+.settings-text-btn:hover {
+  color: #9B91D9;
+}
+
+
+
+/* Profile info text */
 .profile-info {
   display: flex;
   flex-direction: column;
 }
 
-.profile-name {
-  font-weight: 600;
-  color: #222;
+.settings-icon {
+  z-index: 10;
 }
 
-.profile-role {
-  font-size: 0.875rem;
-  color: #666;
-}

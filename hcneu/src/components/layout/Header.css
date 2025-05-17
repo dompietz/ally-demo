@@ -154,3 +154,9 @@
 .white-text {
   color: white !important;
 }
+
+@media (max-width: 800px) {
+  .header__hamburger span {
+    background: #000 !important;
+  }
+}

@@ -12,110 +12,113 @@
   margin: 0;
   padding: 2rem; /* prevent tight edges on smaller screens */
 }
-  
-  /* ✨ Animated “orb” – can be reused on every step */
-  .glowing-background{
-    --size:320px;                /* change once to make glow larger/smaller */
-    width:var(--size);
-    height:var(--size);
-    position:absolute;
-    top:50%;
-    left:50%;
-    translate:-50% -50%;
-    pointer-events:none;         /* clicks pass through */
-    z-index:-1;                  /* sits behind .quiz-wrapper */
-  }
-  
-  .blurred-gradient{
-    width:150%;                  /* bigger than wrapper so blur can spill */
-    height:150%;
-    position:absolute;
-    top:50%;
-    left:50%;
-    translate:-50% -50%;
-    background:conic-gradient(
-        from 0deg,
-        #D9AF62,
-        #87D5B2,
-        #9B91D9,
-        #D9AF62);
-    border-radius:50%;
-    filter:blur(70px);
-    animation:spinGradient 6s linear infinite;
-  }
-  
-  /* optional subtle grain */
-  .grainy-overlay{
-    position:absolute;
-    inset:0;
-    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3C/svg%3E") repeat;
-    opacity:.12;
-    mix-blend-mode:soft-light;
-    animation:grainMove 2s steps(8) infinite;
-  }
-  
-  @keyframes spinGradient{
-    from{ rotate:0deg; }
-    to  { rotate:360deg; }
-  }
-  @keyframes grainMove{
-    to{ background-position:140px 60px; }
-  }
-  
-  /* ────────── Questionnaire Card ────────── */
-  .quiz-wrapper{
-    max-width:480px;
-    width:100%;
-    margin:0 auto;              /* wrapped by .quiz-scene so no top margin */
-    padding:42px 32px;
-    box-sizing:border-box;
-    border-radius:32px;
-    background: white !important; 
-    z-index: 1;
-    box-shadow:0 8px 28px rgba(0,0,0,.10);
-    display:flex;
-    flex-direction:column;
-    gap:32px;
-    text-align:center;
-  }
-  
-  /* Header / sub-header */
-  .quiz-title{ font:700 2rem/1.2 "IBM Plex Sans",sans-serif; color:#000;}
-  .quiz-sub  { font:600 1.1rem/1.4 "IBM Plex Sans",sans-serif; color:#000;}
-  
-  /* ────────── FIELD BLOCKS ────────── */
+
+/* ✨ Animated “orb” – can be reused on every step */
+.glowing-background {
+  --size: 320px;
+  width: var(--size);
+  height: var(--size);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.blurred-gradient {
+  width: 150%;
+  height: 150%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  background: conic-gradient(from 0deg, #D9AF62, #87D5B2, #9B91D9, #D9AF62);
+  border-radius: 50%;
+  filter: blur(70px);
+  animation: spinGradient 6s linear infinite;
+}
+
+.grainy-overlay {
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3C/svg%3E") repeat;
+  opacity: 0.12;
+  mix-blend-mode: soft-light;
+  animation: grainMove 2s steps(8) infinite;
+}
+
+@keyframes spinGradient {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+@keyframes grainMove {
+  to { background-position: 140px 60px; }
+}
+
+/* ────────── Questionnaire Card ────────── */
+.quiz-wrapper {
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 42px 32px;
+  box-sizing: border-box;
+  border-radius: 32px;
+  background: white !important;
+  z-index: 1;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.10);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  text-align: center;
+}
+
+.quiz-title {
+  font: 700 2rem/1.2 "IBM Plex Sans", sans-serif;
+  color: #000;
+}
+
+.quiz-sub {
+  font: 600 1.1rem/1.4 "IBM Plex Sans", sans-serif;
+  color: #000;
+}
+
 .input-group,
 .checkbox-row {
-  position: relative;                 /* so pseudo-icons can anchor */
+  position: relative;
   display: flex;
   align-items: center;
   gap: 14px;
   width: 100%;
   padding: 16px 20px;
   border-radius: 16px;
-  background: #fafafa;                /* light grey fill */
+  background: #fafafa;
   border: 2px solid transparent;
-  box-shadow: inset 0 0 0 1px #e5e5e5;/* subtle inner stroke       */
-  transition: border .25s ease, box-shadow .25s ease;
+  box-shadow: inset 0 0 0 1px #e5e5e5;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
   font: 500 1rem/1.3 'IBM Plex Sans', sans-serif;
   justify-content: flex-start;
 }
 
-/* green hover / focus ring from your original design */
 .input-group:hover,
-.checkbox-row:hover { border-color: #6ab28b1e; }
-.input-group:focus-within { border-color:#9B91D9; }
+.checkbox-row:hover {
+  border-color: #6ab28b1e;
+}
 
-/* text / date / select reset */
+.input-group:focus-within {
+  border-color: #9B91D9;
+}
+
 .input-group input[type="text"],
 .input-group input[type="date"],
 .input-group select {
-  all: unset;                         /* strip native chrome        */
+  all: unset;
   font: inherit;
   flex: 1 1 auto;
   line-height: 1.3;
   color: #000;
-  padding-right: 1.8rem;              /* room for arrow / icon      */
+  padding-right: 1.8rem;
   cursor: text;
 }
 
@@ -124,21 +127,19 @@
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding: 0;                 /* no inner box space */
-  margin: 0;                  /* just in case */
-  border: none;               /* prevents double box look */
+  padding: 0;
+  margin: 0;
+  border: none;
   background: transparent;
   font: inherit;
   line-height: 1.3;
   color: #000;
 }
 
+.input-group ::placeholder {
+  color: #9e9e9e;
+}
 
-
-/* nicer placeholder colour */
-.input-group ::placeholder { color:#9e9e9e; }
-
-/* hide native arrow / calendar & add custom icon */
 .input-group select,
 .input-group input[type="date"] {
   appearance: none;
@@ -146,34 +147,32 @@
   cursor: pointer;
 }
 
-/* chevron for SELECT */
 .input-group select::after,
 .input-group.select::after {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    right: 18px;
-    top: 50%;
-    width: 10px;
-    height: 10px;
-    border-right: 2px solid #6f6f6f;
-    border-bottom: 2px solid #6f6f6f;
-    transform: translateY(-60%) rotate(45deg);
-  }
-  
-  /* hide native arrow for nice cross-browser look  */
-  .input-group.select select {
-    appearance: none;
-    -webkit-appearance: none;
-    cursor: pointer;
-    padding-right: 1.8rem;   /* leave room for arrow */
-  }
-
-/* calendar glyph for DATE (Safari & Chromium) */
-.input-group input[type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 0;                         /* hide native           */
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #6f6f6f;
+  border-bottom: 2px solid #6f6f6f;
+  transform: translateY(-60%) rotate(45deg);
 }
-.input-group.date::after {            /* add with extra class  */
+
+.input-group.select select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 1.8rem;
+}
+
+.input-group input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+.input-group.date::after {
   content: "📅";
   font-size: 18px;
   position: absolute;
@@ -182,120 +181,114 @@
   transform: translateY(-55%);
 }
 
-/* radio / checkbox circles – unchanged */
 .input-group input[type="radio"],
-.checkbox-row input[type="checkbox"]{
-  appearance:none;
-  width:20px;height:20px;
-  border:2px solid #6ab28b;
-  border-radius:50%;
-  position:relative;
-  cursor:pointer;
+.checkbox-row input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #6ab28b;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
 }
+
 .input-group input[type="radio"]:checked::after,
-.checkbox-row input[type="checkbox"]:checked::after{
-  content:"";position:absolute;inset:4px;
-  background:#6ab28b;border-radius:50%;
+.checkbox-row input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background: #6ab28b;
+  border-radius: 50%;
 }
 
-  
-  /* ────────── PRIMARY CTA ────────── */
-  .primary-btn{
-    margin-top:8px;
-    width:100%;
-    padding:14px 24px;
-    border-radius:9999px;
-    font:600 1rem/1 "IBM Plex Sans",sans-serif;
-    background:#9B91D9;
-    color:#fff;
-    border:none;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:6px;
-    transition:filter .2s ease;
-  }
-  .primary-btn:hover{ filter:brightness(.95);}
-  .primary-btn svg{ width:20px;height:20px; stroke:#fff; stroke-width:3; }
-  
-  /* ────────── Progress Bar ────────── */
-  .quiz-progress{
-    width:100%;
-    height:4px;
-    background:#d1d1d1;
-    border-radius:9999px;
-    overflow:hidden;
-  }
-  .quiz-progress span{
-    display:block;
-    height:100%;
-    background:#6ab28b;
-    width:var(--percent,0%);
-    transition:width .35s ease;
-  }
-  
-  /* ────────── Mobile tweaks (<375px) ────────── */
-  @media(max-width:375px){
-    .quiz-wrapper{ padding:32px 20px;}
-    .quiz-title{ font-size:1.6rem;}
-  }
-  
-/* ────────── TOPIC GRID  +  CARDS ────────── */
-.topics-grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr;      /* two pills per row */
-    gap: 14px 16px;
-    margin-top: 6px;
-  }
-  
-  @media(max-width:460px){               /* single column on tiny screens */
-    .topics-grid{ grid-template-columns: 1fr; }
-  }
-  
-  .topic-card{
-    background:#fff;
-    box-shadow: inset 0 0 0 1px #e5e5e5;
-    border-radius: 30px;
-    padding: 12px 18px;
-    font: 500 0.95rem/1.3 'IBM Plex Sans', sans-serif;
-    cursor:pointer;
-    transition: box-shadow .25s ease, background .25s ease;
-  }
-  
-  .topic-card:hover{
-    box-shadow: inset 0 0 0 2px #6ab28b33;
-  }
+.primary-btn {
+  margin-top: 8px;
+  width: 100%;
+  padding: 14px 24px;
+  border-radius: 9999px;
+  font: 600 1rem/1 "IBM Plex Sans", sans-serif;
+  background: #9B91D9;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: filter 0.2s ease;
+}
 
-/* --- topic grid --- */
-.grid-topics{
-    display:grid;
-    grid-template-columns:1fr 1fr;   /* two columns */
-    gap:16px 20px;
-  }
-  
-  .topic-card{
-    cursor:pointer;
-    user-select:none;
-  }
-  
-  /* bigger hit-area for the checkbox */
-  .topic-card input{
-    flex:0 0 20px;
-  }
-  .topic-card span{
-    flex:1;
-  }
+.primary-btn:hover {
+  filter: brightness(0.95);
+}
 
-/* body copy inside the disclaimer card */
-.disclaimer-text{
-    max-width: 32ch;          /* keeps nice readable line-length */
-    margin: 0 auto;
-    line-height: 1.6;
-    color: #333;
+.primary-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: #fff;
+  stroke-width: 3;
+}
+
+.quiz-progress {
+  width: 100%;
+  height: 4px;
+  background: #d1d1d1;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.quiz-progress span {
+  display: block;
+  height: 100%;
+  background: #6ab28b;
+  width: var(--percent, 0%);
+  transition: width 0.35s ease;
+}
+
+@media (max-width: 375px) {
+  .quiz-wrapper {
+    padding: 32px 20px;
   }
-  
-  
-  
-  /* reuse the green circle check-mark already defined for .checkbox-row */
-  
+  .quiz-title {
+    font-size: 1.6rem;
+  }
+}
+
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px 16px;
+  margin-top: 6px;
+}
+
+.topic-card {
+  background: #fff;
+  box-shadow: inset 0 0 0 1px #e5e5e5;
+  border-radius: 30px;
+  padding: 12px 18px;
+  font: 500 0.95rem/1.3 'IBM Plex Sans', sans-serif;
+  cursor: pointer;
+  transition: box-shadow 0.25s ease, background 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topic-card:hover {
+  box-shadow: inset 0 0 0 2px #6ab28b33;
+}
+
+.topic-card input {
+  flex: 0 0 20px;
+}
+
+.topic-card span {
+  flex: 1;
+}
+
+.disclaimer-text {
+  max-width: 32ch;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #333;
+}

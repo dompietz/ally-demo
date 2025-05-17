@@ -2,7 +2,7 @@
     "name": "Ally",
     "short_name": "Ally",
     "description": "Deine personalisierte Begleiterin",
-    "start_url": "/",
+    "start_url": "/dashboard",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#9B91D9",
