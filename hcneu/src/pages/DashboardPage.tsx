@@ -1,72 +1,85 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // ← Add this
+// src/pages/DashboardPage.tsx
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { supabase } from '../lib/supabase';
 import './DashboardPage.css';
+
 import BottomNav from '../components/layout/BottomNav';
 import OverviewCard from '../components/overview/OverviewCard';
 import ContentTile from '../components/content/ContentTile';
 import useRSSFeed from '../components/hooks/useRSSFeed';
-import { useState } from 'react';
+import DashboardHeader from '../components/Dashboard/DashboardHeader'; // Path adjusted
 
 const DashboardPage: React.FC = () => {
-  const { items, loading, error } = useRSSFeed('https://www.tagesschau.de/xml/rss2');
   const navigate = useNavigate();
-  // Add state for settings dropdown
+  const { items, loading, error } = useRSSFeed('https://www.tagesschau.de/xml/rss2');
+
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [username, setUsername] = useState<string>('Nutzer');
+  const [showEmailReminder, setShowEmailReminder] = useState(false);
+
+  useEffect(() => {
+    const fetchProfileName = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (session) {
+        // 🔐 Email confirmation check
+        if (!session.user.confirmed_at) {
+          setShowEmailReminder(true);
+        }
+
+        const { data: profile, error } = await supabase
+          .from("profiles")
+          .select("full_name")
+          .eq("id", session.user.id)
+          .single();
+
+        if (error) {
+          console.warn("No full_name in profile, falling back to email");
+          setUsername(session.user.email ?? 'Nutzer');
+        } else if (profile?.full_name) {
+          setUsername(profile.full_name);
+        } else {
+          setUsername(session.user.email ?? 'Nutzer');
+        }
+      }
+    };
+
+    fetchProfileName();
+  }, []);
 
   return (
     <div className="dashboard-container">
-      {/* Animated conic gradient orb */}
+      {/* Glowing Background */}
       <div className="glowing-background">
         <div className="blurred-gradient" />
         <div className="grainy-overlay" />
       </div>
 
-      {/* Full-width header */}
-      <motion.header
-        className="dashboard-header"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="dashboard-header-inner">
-          <div className="welcome-text">
-            <h1>Guten Morgen William</h1>
-            <p>Mit Ally bist du stets informiert über deinen Verlauf und hast alle Werte auf einen Blick.</p>
-          </div>
-          <div className="profile-section">
-            <div className="profile-avatar-wrapper">
-              <img
-                src="https://ui-avatars.com/api/?name=William+Doe"
-                alt="Profilbild"
-                className="profile-avatar"
-              />
-              <div className="settings-mobile">
-                <button
-                  className="settings-icon-btn"
-                  aria-label="Einstellungen öffnen"
-                  onClick={() => setSettingsOpen(!settingsOpen)}
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                  </svg>
-                </button>
-                {settingsOpen && (
-                  <button 
-                    className="settings-text-btn"
-                    onClick={() => navigate('/settings')}
-                  >
-                    Einstellungen
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.header>
+      {/* ⛔️ Email confirmation reminder */}
+      {showEmailReminder && (
+        <motion.div
+          className="email-reminder"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <p>
+            Bitte bestätige deine E-Mail-Adresse über den Link, den wir dir geschickt haben.
+          </p>
+          <button onClick={() => setShowEmailReminder(false)}>Verstanden</button>
+        </motion.div>
+      )}
 
-      {/* Content wrapper */}
+      {/* Dashboard Header (extracted component) */}
+      <DashboardHeader
+        username={username}
+        settingsOpen={settingsOpen}
+        setSettingsOpen={setSettingsOpen}
+      />
+
+      {/* Content Section */}
       <div className="dashboard-content">
         <motion.section
           className="overview-section-box"
@@ -95,7 +108,9 @@ const DashboardPage: React.FC = () => {
               onAdd={() => console.log("Add Wohlbefinden")}
             />
           </div>
-          <button className="view-analyses-btn">Alle Analysen ansehen</button>
+          <button className="view-analyses-btn" onClick={() => navigate('/data')}>
+            Alle Analysen ansehen
+          </button>
         </motion.section>
 
         <motion.section

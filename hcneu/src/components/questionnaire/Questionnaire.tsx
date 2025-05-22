@@ -5,6 +5,7 @@ import Step2 from "./Step2_Topics";
 import Step3 from "./Step3_Disclaimer";
 import Loading from "./LoadingScreen";
 
+
 export interface Answers {
   name: string;
   diagnosis: "Morbus Crohn" | "Colitis Ulcerosa";
@@ -12,9 +13,9 @@ export interface Answers {
   topics: string[];
   disclaimerAccepted: boolean;
 }
-
+console.log("Questionnaire mounted"); // ✅ now correctly placed
 export default function Questionnaire() {
-  const [step,    setStep]    = useState(0);          // 0-3 (+ loading)
+  const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>({
     name: "",
     diagnosis: "Morbus Crohn",
@@ -23,13 +24,14 @@ export default function Questionnaire() {
     disclaimerAccepted: false,
   });
 
-  /* helper to merge partial answer + advance */
+
   const next = (partial: Partial<Answers>) => {
     setAnswers(prev => ({ ...prev, ...partial }));
     setStep(s => s + 1);
   };
 
-  /* when final step done show loading → dashboard */
+  console.log("Current step:", step); // ✅ helps debug white screen
+
   if (step === 3) return <Loading answers={answers} />;
 
   return (

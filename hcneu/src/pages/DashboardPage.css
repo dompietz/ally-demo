@@ -75,43 +75,6 @@
   z-index: 1;
 }
 
-/* Header */
-.dashboard-header h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: #000;
-}
-
-.dashboard-header p {
-  color: #555;
-  max-width: 600px;
-}
-.dashboard-header {
-  width: 100%;
-  background: white;
-  padding: 1rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  min-height: 150px;
-}
-
-.dashboard-header-inner {
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-
 /* Overview Section */
 .overview-section-box {
   background: #fff;
@@ -121,7 +84,7 @@
   display: flex;
   flex-direction: column;
   gap: 0rem;
-  overflow: hidden; /* Add this to contain the scrolling cards */
+  overflow: hidden;
 }
 
 .overview-cards {
@@ -134,12 +97,11 @@
 
 @media (max-width: 768px) {
   .overview-cards {
-    display: flex;
     flex-direction: row !important;
     flex-wrap: nowrap;
     gap: 0.75rem;
     overflow-x: auto;
-    width: calc(100% + 2rem); /* Adjust for the negative margin */
+    width: calc(100% + 2rem);
     margin: 0 -1rem;
     padding: 0.5rem 1rem;
     -webkit-overflow-scrolling: touch;
@@ -152,7 +114,7 @@
   }
 
   .overview-cards > * {
-    flex: 0 0 160px; /* Make cards more compact */
+    flex: 0 0 160px;
     min-width: 160px;
   }
 }
@@ -163,7 +125,7 @@
   }
 
   .overview-cards > * {
-    flex: 0 0 140px; /* Even more compact for mobile */
+    flex: 0 0 140px;
     min-width: 140px;
   }
 }
@@ -205,14 +167,13 @@
 
 @media (max-width: 768px) {
   .content-tiles {
-    display: flex;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     gap: 1rem;
     overflow-x: auto;
+    width: calc(100% + 2rem);
     margin: 0 -1rem;
     padding: 0.5rem 1rem;
-    width: calc(100% + 2rem);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -223,26 +184,25 @@
   }
 
   .content-tiles > * {
-    flex: 0 0 calc(85% - 1rem);
-    min-width: calc(85% - 1rem);
-    scroll-snap-align: start;
+    flex: 0 0 300px;
+    min-width: 300px;
+  }
+
+  .content-tiles > *:last-child {
+    margin-right: 0;
   }
 }
 
 @media (max-width: 480px) {
   .content-tiles {
     gap: 0.75rem;
-    margin: 0 -0.75rem;
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem 0rem;
+    margin: 0 0rem;
   }
 
   .content-tiles > * {
-    flex: 0 0 calc(92% - 0.75rem);
-    min-width: calc(92% - 0.75rem);
-  }
-
-  .content-section-box {
-    overflow: hidden;
+    flex: 0 0 300px;
+    min-width: 300px;
   }
 }
 
@@ -261,8 +221,6 @@
   }
 }
 
-/* Responsive */
-/* Update the media queries section */
 @media (max-width: 768px) {
   .dashboard-content {
     padding: 1rem 0.75rem;
@@ -303,7 +261,7 @@
 
   .overview-section-box,
   .content-section-box {
-    padding: 1rem 0.75rem;
+    padding: 0.75rem 0.75rem;
     border-radius: 0.5rem;
   }
 
@@ -319,205 +277,26 @@
   }
 }
 
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.75rem 1rem;
-  flex-wrap: nowrap;
-}
-
-.welcome-text {
-  flex: 1;
-  min-width: 0;
-}
-
-.dashboard-header h1 {
-  font-size: 1.25rem;
-  margin-bottom: 0.25rem;
-}
-
-.dashboard-header p {
-  font-size: 0.85rem;
-  line-height: 1.2;
-  margin: 0;
-}
-
-@media (max-width: 768px) {
-  .dashboard-header {
-    padding: 0.75rem;
-    min-height: auto;
-  }
-
-  .dashboard-header-inner {
-    gap: 0.75rem;
-  }
-
-  .profile-avatar {
-    width: 32px;
-    height: 32px;
-  }
-
-  .profile-avatar-wrapper {
-    gap: 0.35rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .dashboard-header {
-    padding: 0.5rem 0.75rem;
-  }
-
-  .dashboard-header h1 {
-    font-size: 1.1rem;
-    margin-bottom: 0.15rem;
-  }
-
-  .dashboard-header p {
-    font-size: 0.75rem;
-    line-height: 1.1;
-  }
-
-  .profile-avatar {
-    width: 28px;
-    height: 28px;
-  }
-}
-
-/* ────────── PROFILE SECTION ────────── */
-.profile-section {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.profile-avatar-wrapper {
-  display: flex;
-  flex-direction: row; /* change to row instead of column */
-  align-items: center; /* center vertically */
-  gap: 0.5rem; /* reduce gap for horizontal layout */
-  width: auto;
-}
-
-.profile-avatar {
-  width: 40px; /* fixed size instead of percentage */
-  height: 40px;
-  border-radius: 9999px;
-  object-fit: cover;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.settings-mobile {
-  display: none;
-  position: relative;
-}
-
-.settings-icon-btn {
-  background: none;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
-  color: #555;
-  transition: color 0.2s ease;
-}
-
-.settings-icon-btn:hover {
-  color: #9B91D9;
-}
-
-@media (max-width: 768px) {
-  .settings-text-btn {
-    display: none;
-  }
-
-  .settings-mobile {
-    display: flex;
-    align-items: center;
-  }
-
-  .settings-mobile .settings-text-btn {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: 0.5rem;
-    white-space: nowrap;
-    z-index: 10;
-  }
-}
-
-.settings-dropdown {
-  width: 100%;
-  margin-top: 0.5rem;
-}
-
-.settings-select {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #9B91D9;
-  border-radius: 30px;
-  background-color: white;
-  color: #555;
-  font-weight: 500;
+.email-reminder {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 16px 24px;
+  border: 1px solid #ffeeba;
+  border-radius: 8px;
+  z-index: 1000;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 1em;
-  padding-right: 2.5em;
 }
 
-.settings-select:hover {
-  border-color: #8876d0;
-  color: #9B91D9;
-}
-
-.settings-select:focus {
-  outline: none;
-  border-color: #9B91D9;
-  box-shadow: 0 0 0 2px rgba(155, 145, 217, 0.1);
-}
-
-.settings-mobile {
-  display: none;
-  position: relative;
-}
-
-.settings-icon-btn {
+.email-reminder button {
   background: none;
   border: none;
-  padding: 8px;
+  color: #856404;
+  font-weight: bold;
+  margin-left: 12px;
   cursor: pointer;
-  color: #555;
-  transition: color 0.2s ease;
 }
-
-.settings-icon-btn:hover {
-  color: #9B91D9;
-}
-
-@media (max-width: 768px) {
-  .settings-text-btn {
-    display: none;
-  }
-
-  .settings-mobile {
-    display: block;
-  }
-
-  .settings-mobile .settings-text-btn {
-    display: block;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: 0.5rem;
-    white-space: nowrap;
-    z-index: 10;
-  }
-}
-

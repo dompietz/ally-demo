@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import type { Answers } from "./Questionnaire";
-import "./Questionnaire.css"; // ← ① bring in the shared styles
+import "./Questionnaire.css";
 
 const allTopics = [
   "Ernährung",
@@ -22,8 +22,20 @@ interface Props {
 }
 
 export default function Step2({ defaultValues, onNext }: Props) {
-  const { register, handleSubmit } = useForm<Answers>({ defaultValues });
-  const submit = (d: Answers) => onNext({ topics: d.topics });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{ topics: string[] }>({
+    defaultValues: { topics: defaultValues.topics },
+  });
+
+  const submit = (data: { topics: string[] }) => {
+    const cleaned = data.topics.filter(Boolean); // remove any undefined
+    if (cleaned.length > 0) {
+      onNext({ topics: cleaned });
+    }
+  };
 
   return (
     <div className="quiz-scene">
@@ -44,13 +56,21 @@ export default function Step2({ defaultValues, onNext }: Props) {
         <p className="quiz-sub">Welche&nbsp;Themen interessieren&nbsp;dich?</p>
 
         <div className="topics-grid">
-          {allTopics.map((t) => (
-            <label key={t} className="checkbox-row topic-card">
-              <input type="checkbox" value={t} {...register("topics")} />
-              <span>{t}</span>
+          {allTopics.map((topic) => (
+            <label key={topic} className="checkbox-row topic-card">
+              <input
+                type="checkbox"
+                value={topic}
+                {...register("topics")}
+              />
+              <span>{topic}</span>
             </label>
           ))}
         </div>
+
+        {errors.topics && (
+          <span className="error-message">Bitte wähle mindestens ein Thema</span>
+        )}
 
         <button className="primary-btn" type="submit">
           Weiter

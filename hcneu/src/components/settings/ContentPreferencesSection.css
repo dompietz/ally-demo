@@ -1,0 +1,31 @@
+.content-header {
+    margin-bottom: 1.5rem; /* adjust this to control space below heading */
+  }
+  
+  .content-header h2 {
+    margin-bottom: 0.5rem; /* space between title and subtext */
+  }
+
+.topic-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  .topic-tag {
+    padding: 8px 12px;
+    border-radius: 20px;
+    background-color: #eee;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+  }
+  
+  .topic-tag.selected {
+    background-color: #87D5B2;
+    color: rgb(19, 19, 19);
+    border: solid 1px #2e2e2e;
+    font-weight: 500;
+  }
+  

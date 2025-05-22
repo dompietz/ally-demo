@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import * as Select from '@radix-ui/react-select';
 import './SettingsPage.css';
 
+import ProfileSection from '../components/settings/ProfileSection';
+import ContentPreferencesSection from '../components/settings/ContentPreferencesSection'; // ✅ NEW
+
 const categories = [
   { id: 'profil', label: 'Mein Profil' },
   { id: 'inhalte', label: 'Meine Inhalte' },
@@ -17,32 +20,9 @@ const SettingsPage: React.FC = () => {
   const renderContent = () => {
     switch (activeCategory) {
       case 'profil':
-        return (
-          <div className="settings-section">
-            <h2>Mein Profil</h2>
-            <div className="profile-banner">
-              🎉 Du nutzt Ally seit <strong>4 Monaten</strong>!<br />🔥 Streak: <strong>86 Tage in Folge</strong>
-            </div>
-            <div className="profile-field">
-              <label>Name</label>
-              <input type="text" defaultValue="William Doe" />
-            </div>
-          </div>
-        );
+        return <ProfileSection />;
       case 'inhalte':
-        return (
-          <div className="settings-section">
-            <h2>Meine Inhalte</h2>
-            <p>Du kannst deine Interessensgebiete neu wählen:</p>
-            <div className="topic-tags">
-              {["Ernährung", "Stress", "Medikamente", "Schlaf"].map((tag) => (
-                <div key={tag} className="topic-tag">
-                  {tag}
-                </div>
-              ))}
-            </div>
-          </div>
-        );
+        return <ContentPreferencesSection />; // ✅ modular inclusion
       case 'abo':
         return (
           <div className="settings-section">
@@ -87,6 +67,7 @@ const SettingsPage: React.FC = () => {
             ← Zurück zum Dashboard
           </button>
 
+          {/* Mobile Dropdown */}
           <div className="sidebar-dropdown">
             <Select.Root value={activeCategory} onValueChange={setActiveCategory}>
               <Select.Trigger className="select-trigger">
@@ -104,6 +85,7 @@ const SettingsPage: React.FC = () => {
             </Select.Root>
           </div>
 
+          {/* Desktop Sidebar Buttons */}
           <div className="sidebar-buttons">
             {categories.map((cat) => (
               <button

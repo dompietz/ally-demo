@@ -56,7 +56,7 @@ const ContentLibraryPage: React.FC = () => {
             {categories.map((category, idx) => (
               <div key={idx} className="topic-tile">
                 <p className="topic-title">{category}</p>
-                <span className="topic-link">Mehr erfahren →</span>
+                <span className="topic-link">Ansehen →</span>
               </div>
             ))}
           </div>

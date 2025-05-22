@@ -1,8 +1,9 @@
 // src/components/questionnaire/Step1_Welcome.tsx
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import type { Answers } from "./Questionnaire";
-import "./Questionnaire.css";           // <- keeps your base styles
+import "./Questionnaire.css";
 
 interface Props {
   defaultValues: Answers;
@@ -10,25 +11,33 @@ interface Props {
 }
 
 export default function Step1_Welcome({ defaultValues, onNext }: Props) {
-  const { register, handleSubmit } = useForm<Answers>({ defaultValues });
+  useEffect(() => {
+    console.log("👋 Step1_Welcome mounted");
+    console.log("🧪 defaultValues:", defaultValues);
+  }, []);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Answers>({ defaultValues });
 
   const submit = (data: Answers) =>
     onNext({
-      name: data.name,
+      name: data.name.trim(),
       diagnosis: data.diagnosis,
       date: data.date,
     });
 
+  if (!defaultValues) return <div>⚠️ Keine Eingabewerte übergeben</div>;
+
   return (
-    /* ── Scene wrapper (glow background + card) ── */
     <div className="quiz-scene">
-      {/* floating conic-gradient “orb” */}
       <div className="glowing-background">
         <div className="blurred-gradient" />
         <div className="grainy-overlay" />
       </div>
 
-      {/* actual card / form */}
       <motion.form
         className="quiz-wrapper"
         onSubmit={handleSubmit(submit)}
@@ -42,13 +51,21 @@ export default function Step1_Welcome({ defaultValues, onNext }: Props) {
         {/* ───────── Name ───────── */}
         <p className="quiz-sub">Wie dürfen wir dich nennen?</p>
         <div className="input-group">
-  <input
-    type="text"
-    placeholder="Dein Name"
-    {...register("name", { required: true })}
-  />
-</div>
-
+          <input
+            type="text"
+            placeholder="Dein Name"
+            {...register("name", {
+              required: "Bitte gib deinen Namen ein",
+              minLength: {
+                value: 2,
+                message: "Der Name muss mindestens 2 Zeichen enthalten",
+              },
+            })}
+          />
+          {errors.name && (
+            <span className="error-message">{errors.name.message}</span>
+          )}
+        </div>
 
         {/* ───────── Diagnosis ───────── */}
         <p className="quiz-sub">Welcher Diagnose-Typ trifft zu?</p>
@@ -73,7 +90,7 @@ export default function Step1_Welcome({ defaultValues, onNext }: Props) {
           Weiter
         </button>
 
-        {/* progress bar (1 / 3) */}
+        {/* Progress Bar */}
         <div className="quiz-progress">
           <span style={{ "--percent": "33%" } as React.CSSProperties} />
         </div>

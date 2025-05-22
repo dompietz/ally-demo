@@ -1,98 +1,21 @@
-// src/components/SignUpPage.tsx
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "./SignUpPage.css";
+import React from 'react';
+import MultiStepSignup from '../components/auth/MultiStepSignup';
+import '../pages/SignUpPage.css'; // or wherever your CSS lives
 
 const SignUpPage: React.FC = () => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-
-  /** simple handler – later you’ll probably call an API */
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    /* very light validation */
-    if (!email.trim()) {
-      alert("Bitte gib eine gültige E-Mail ein.");
-      return;
-    }
-
-    /* you could stash the mail in localStorage / context here */
-    // localStorage.setItem("userEmail", email);
-
-    /* go to first questionnaire step */
-    navigate("/questionnaire");
-  };
-
   return (
     <div className="sign-up-page">
-      {/* ——— Logo ——— */}
-      <header className="sign-up-logo-header">
-        <Link to="/">
-          <img
-            src="https://health-covery.com/wp-content/uploads/2025/02/allylogo1.webp"
-            alt="Ally Logo"
-          />
-        </Link>
-      </header>
-
-      {/* ——— Centered tile ——— */}
       <div className="sign-up-content-wrapper">
         <div className="sign-up-tile">
-          {/* LEFT: copy & form */}
           <div className="sign-up-content">
-          <div className="sign-up-progress">
-  <div className="progress-step active">
-    <div className="circle">1</div>
-    <span>Anmelden</span>
-  </div>
-  <div className="progress-step">
-    <div className="circle">2</div>
-    <span>Fragebogen</span>
-  </div>
-  <div className="progress-step">
-    <div className="circle">3</div>
-    <span>Los geht's</span>
-  </div>
-</div>
-
             <h1>Willkommen bei Ally</h1>
-            <h2>Melde dich an</h2>
-
-            <form onSubmit={onSubmit}>
-              <div className="input-field">
-                <input
-                  type="email"
-                  placeholder="Deine E-Mail"
-                  aria-label="E-Mail-Adresse"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="sign-up-buttons">
-                <button type="submit" className="sign-up-btn">
-                  Sign Up
-                </button>
-
-                {/* you can wire this later */}
-                <button
-                  type="button"
-                  className="insurance-code-btn"
-                  onClick={() => alert("Feature coming soon 🙂")}
-                >
-                  Code deiner Krankenkasse?
-                </button>
-              </div>
-            </form>
+            <h2>Starte dein persönliches CED-Tagebuch</h2>
+            <MultiStepSignup />
           </div>
-
-          {/* RIGHT: image */}
           <img
             className="sign-up-image"
-            src="https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?q=80&w=1374&auto=format&fit=crop"
-            alt="Waldszene"
+            src="https://images.unsplash.com/photo-1742314591445-bfacc47276e3?q=80&w=3616&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Onboarding visual"
           />
         </div>
       </div>

@@ -16,7 +16,7 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-around;
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
   z-index: 100;
   border: solid 1px #e8cbe2;
 }
