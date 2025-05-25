@@ -5,6 +5,7 @@ import BottomNav from '../components/layout/BottomNav';
 import DashboardHeader from '../components/Dashboard/DashboardHeader';
 import './DashboardPage.css';
 import './ContentLibraryPage.css';
+import GlowingBackground from '../components/layout/GlowingBackground';
 
 const categories = [
   'Erste Schritte',
@@ -28,10 +29,7 @@ const ContentLibraryPage: React.FC = () => {
   return (
     <div className="content-library-wrapper">
       {/* Glowing background */}
-      <div className="glowing-background">
-        <div className="blurred-gradient" />
-        <div className="grainy-overlay" />
-      </div>
+      <GlowingBackground />
 
       {/* Reusable Header */}
       <DashboardHeader

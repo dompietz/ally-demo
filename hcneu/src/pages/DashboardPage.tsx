@@ -10,6 +10,7 @@ import OverviewCard from '../components/overview/OverviewCard';
 import ContentTile from '../components/content/ContentTile';
 import useRSSFeed from '../components/hooks/useRSSFeed';
 import DashboardHeader from '../components/Dashboard/DashboardHeader';
+import GlowingBackground from '../components/layout/GlowingBackground';
 
 const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
@@ -32,10 +33,7 @@ const DashboardPage: React.FC = () => {
   return (
     <div className="dashboard-container">
       {/* Glowing Background */}
-      <div className="glowing-background">
-        <div className="blurred-gradient" />
-        <div className="grainy-overlay" />
-      </div>
+      <GlowingBackground />
 
       {/* ⛔️ Email confirmation reminder */}
       {showEmailReminder && (

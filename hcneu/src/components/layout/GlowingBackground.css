@@ -1,0 +1,58 @@
+/* src/components/layout/GlowingBackground.css */
+
+.glowing-background {
+    --size: 320px;
+    width: var(--size);
+    height: var(--size);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+  
+  .blurred-gradient {
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    background: conic-gradient(
+      from 0deg,
+      #D9AF62,
+      #87D5B2,
+      #9B91D9,
+      #D9AF62
+    );
+    border-radius: 50%;
+    filter: blur(70px);
+    animation: spinGradient 6s linear infinite;
+  }
+  
+  .grainy-overlay {
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3C/svg%3E") repeat;
+    opacity: 0.12;
+    mix-blend-mode: soft-light;
+    animation: grainMove 2s steps(8) infinite;
+  }
+  
+  @keyframes spinGradient {
+    from {
+      rotate: 0deg;
+    }
+    to {
+      rotate: 360deg;
+    }
+  }
+  
+  @keyframes grainMove {
+    to {
+      background-position: 140px 60px;
+    }
+  }
+  
