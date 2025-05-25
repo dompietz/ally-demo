@@ -12,11 +12,6 @@
     z-index: 0;
   }
   
-  .dashboard-header {
-    position: relative;
-    z-index: 1;
-  }
-  
   .data-content {
     position: relative;
     z-index: 1;
