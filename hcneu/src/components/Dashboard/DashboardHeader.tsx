@@ -15,8 +15,22 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({ username }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    navigate('/login');
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+  
+    if (!session) {
+      console.warn('No active session – skipping logout.');
+      navigate('/login');
+      return;
+    }
+  
+    const { error } = await supabase.auth.signOut({ scope: 'local' });
+    if (error) {
+      console.error('Logout failed:', error.message);
+    } else {
+      navigate('/login');
+    }
   };
 
   return (

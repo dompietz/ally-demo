@@ -81,37 +81,41 @@ const DashboardPage: React.FC = () => {
 
       {/* Content Section */}
       <div className="dashboard-content">
-        <motion.section
-          className="overview-section-box"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <h2>Deine Übersicht</h2>
-          <div className="overview-cards">
-            <OverviewCard
-              label="Stuhlgang"
-              title="ø 4 Stuhlgänge täglich"
-              subtitle="2 schmerzhaft"
-              onAdd={() => console.log("Add Stuhlgang")}
-            />
-            <OverviewCard
-              label="Symptome"
-              title="Keine Daten"
-              subtitle="Kein auffälligen Ereignisse"
-              onAdd={() => console.log("Add Symptome")}
-            />
-            <OverviewCard
-              label="Wohlbefinden"
-              title="Steigend"
-              subtitle="Positive Entwicklung letzte Woche"
-              onAdd={() => console.log("Add Wohlbefinden")}
-            />
-          </div>
-          <button className="view-analyses-btn" onClick={() => navigate('/data')}>
-            Alle Analysen ansehen
-          </button>
-        </motion.section>
+      <motion.section
+  className="overview-section-box"
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: 0.2 }}
+>
+  <div className="overview-inner">
+    <h2>Deine Übersicht</h2>
+    <div className="overview-cards">
+      <OverviewCard
+        label="Stuhlgang"
+        title="ø 4 Stuhlgänge täglich"
+        subtitle="2 schmerzhaft"
+        onAdd={() => console.log("Add Stuhlgang")}
+      />
+      <OverviewCard
+        label="Symptome"
+        title="Keine Daten"
+        subtitle="Kein auffälligen Ereignisse"
+        onAdd={() => console.log("Add Symptome")}
+      />
+      <OverviewCard
+        label="Wohlbefinden"
+        title="Steigend"
+        subtitle="Positive Entwicklung letzte Woche"
+        onAdd={() => console.log("Add Wohlbefinden")}
+      />
+    </div>
+  </div>
+
+  <button className="view-analyses-btn" onClick={() => navigate('/data')}>
+    Alle Analysen ansehen
+  </button>
+</motion.section>
+
 
         <motion.section
           className="content-section-box"
@@ -147,3 +151,5 @@ const DashboardPage: React.FC = () => {
 };
 
 export default DashboardPage;
+
+

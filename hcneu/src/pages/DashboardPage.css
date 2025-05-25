@@ -79,12 +79,16 @@
 .overview-section-box {
   background: #fff;
   border-radius: 1rem;
-  padding: 1.5rem 1.5rem;
+  padding: 1.5rem 0rem 0rem 0rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   gap: 0rem;
   overflow: hidden;
+}
+
+.overview-inner {
+  padding: 24px; /* adjust as needed for spacing */
 }
 
 .overview-cards {
@@ -107,6 +111,10 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
+  }
+
+  .overview-inner {
+    padding: 0rem 1rem 0rem 1rem; /* adjust as needed for spacing */
   }
 
   .overview-cards::-webkit-scrollbar {
@@ -133,13 +141,13 @@
 .view-analyses-btn {
   margin-top: 1rem;
   align-self: center;
-  padding: 0.75rem 1.5rem;
-  background: #ffffff;
-  color: rgb(0, 0, 0);
+  padding: 0.75rem 2rem;
+  background: #b75ee7;
+  color: rgb(255, 255, 255);
   font-weight: 500;
   border: 1px solid;
-  border-color: #9B91D9;
-  border-radius: 30px;
+  border-color: #b75ee7;
+  border-radius: 0rem 0rem 1rem 1rem;
   cursor: pointer;
   width: 100%;
   height: 50px;
@@ -227,7 +235,11 @@
     gap: 1.5rem;
   }
 
-  .overview-section-box,
+  .overview-section-box {
+    padding: 1.25rem 0rem 0rem 0rem;
+    border-radius: 0.75rem;
+  }
+
   .content-section-box {
     padding: 1.25rem 1rem;
     border-radius: 0.75rem;
@@ -250,6 +262,7 @@
     width: 100%;
     height: 45px;
     font-size: 0.9rem;
+    border-radius: 0.75rem 0rem 0rem 0rem;
   }
 }
 
