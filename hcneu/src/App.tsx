@@ -9,6 +9,7 @@ import SignUpPage from './pages/SignUpPage';
 import LogInPage from "./pages/LogInPage";
 import CheckEmailPage from "./pages/CheckEmailPage";
 import ConfirmSuccessPage from "./pages/ConfirmSuccessPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage"; // ✅ NEW
 
 import ProtectedRoute from "./components/auth/ProtectedRoute"; // ✅ ensures login
 import PublicRoute from "./components/auth/PublicRoute";       // ✅ prevents access if logged in
@@ -28,6 +29,7 @@ function App() {
         {/* ✅ Public pages (email actions) */}
         <Route path="/check-email" element={<CheckEmailPage />} />
         <Route path="/confirm-success" element={<ConfirmSuccessPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} /> {/* ✅ NEW */}
 
         {/* ✅ Protected pages (require login) */}
         <Route path="/questionnaire/*" element={<Questionnaire />} />

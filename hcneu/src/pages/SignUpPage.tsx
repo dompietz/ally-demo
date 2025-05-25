@@ -10,7 +10,12 @@ const SignUpPage: React.FC = () => {
           <div className="sign-up-content">
             <h1>Willkommen bei Ally</h1>
             <h2>Starte dein persönliches CED-Tagebuch</h2>
+
             <MultiStepSignup />
+
+            <p className="login-link">
+              Bereits registriert? <a href="/login">Hier anmelden</a>
+            </p>
           </div>
           <img
             className="sign-up-image"

@@ -1,10 +1,13 @@
 // src/pages/DataPage.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import BottomNav from '../components/layout/BottomNav';
-import './DashboardPage.css'; // For shared header styles
+import DashboardHeader from '../components/Dashboard/DashboardHeader';
+import './DashboardPage.css'; // Shared styles
 
 const DataPage: React.FC = () => {
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
   return (
     <div className="dashboard-container">
       {/* Gradient background */}
@@ -13,32 +16,12 @@ const DataPage: React.FC = () => {
         <div className="grainy-overlay" />
       </div>
 
-      {/* Full-width header */}
-      <motion.header
-        className="dashboard-header"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="dashboard-header-inner">
-          <div className="welcome-text">
-            <h1>Deine Daten</h1>
-            <p>Hier findest du eine Übersicht deiner Eingaben und kannst deine Gesundheitsdaten verwalten.</p>
-          </div>
-          <div className="profile-section">
-            <div className="profile-avatar-wrapper">
-              <img
-                src="https://ui-avatars.com/api/?name=William+Doe"
-                alt="Profilbild"
-                className="profile-avatar"
-              />
-              <button className="settings-text-btn" aria-label="Einstellungen öffnen">
-                Einstellungen
-              </button>
-            </div>
-          </div>
-        </div>
-      </motion.header>
+      {/* Header with custom title */}
+      <DashboardHeader
+        title="Deine Daten"
+        settingsOpen={settingsOpen}
+        setSettingsOpen={setSettingsOpen}
+      />
 
       {/* Main content placeholder */}
       <div className="dashboard-content">
@@ -49,7 +32,9 @@ const DataPage: React.FC = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <h2>Gesundheitsdaten Übersicht</h2>
-          <p>Ein Platzhalter für Diagramme, Tabellen und Statistiken über deine bisherigen Einträge.</p>
+          <p>
+            Ein Platzhalter für Diagramme, Tabellen und Statistiken über deine bisherigen Einträge.
+          </p>
         </motion.section>
       </div>
 

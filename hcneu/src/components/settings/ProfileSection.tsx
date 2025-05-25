@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import { getProfile, updateProfile } from "../../lib/profile"; // adjust path
+import { getProfile, updateProfile } from "../../lib/profile";
+import { useAuth } from "../../context/AuthContext";
 import "./ProfileSection.css";
 
 export default function ProfileSection() {
+  const { user } = useAuth();
+
   const [form, setForm] = useState({
     full_name: "",
     diagnosis: "Morbus Crohn",
@@ -14,6 +17,8 @@ export default function ProfileSection() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
+    if (!user) return;
+
     getProfile()
       .then((data) => {
         setForm(data);
@@ -23,7 +28,7 @@ export default function ProfileSection() {
         setError("Fehler beim Laden des Profils");
         console.error(err);
       });
-  }, []);
+  }, [user]);
 
   const handleChange = (field: string, value: string) => {
     setForm((f) => ({ ...f, [field]: value }));

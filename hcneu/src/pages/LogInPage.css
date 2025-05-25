@@ -67,3 +67,16 @@
     text-decoration: underline;
   }
   
+  .login-logo {
+    width: 120px;
+    margin: 0 auto 24px;
+    display: block;
+  }
+  
+  .forgot-password {
+    color: #9B91D9;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    margin-bottom: 16px;
+  }

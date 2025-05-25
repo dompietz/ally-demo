@@ -1,52 +1,32 @@
 // src/pages/DashboardPage.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { supabase } from '../lib/supabase';
 import './DashboardPage.css';
 
+import { supabase } from '../lib/supabase';
 import BottomNav from '../components/layout/BottomNav';
 import OverviewCard from '../components/overview/OverviewCard';
 import ContentTile from '../components/content/ContentTile';
 import useRSSFeed from '../components/hooks/useRSSFeed';
-import DashboardHeader from '../components/Dashboard/DashboardHeader'; // Path adjusted
+import DashboardHeader from '../components/Dashboard/DashboardHeader';
 
 const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
   const { items, loading, error } = useRSSFeed('https://www.tagesschau.de/xml/rss2');
 
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [username, setUsername] = useState<string>('Nutzer');
   const [showEmailReminder, setShowEmailReminder] = useState(false);
 
-  useEffect(() => {
-    const fetchProfileName = async () => {
+  // Check for email confirmation
+  React.useEffect(() => {
+    const checkEmailConfirmation = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-
-      if (session) {
-        // 🔐 Email confirmation check
-        if (!session.user.confirmed_at) {
-          setShowEmailReminder(true);
-        }
-
-        const { data: profile, error } = await supabase
-          .from("profiles")
-          .select("full_name")
-          .eq("id", session.user.id)
-          .single();
-
-        if (error) {
-          console.warn("No full_name in profile, falling back to email");
-          setUsername(session.user.email ?? 'Nutzer');
-        } else if (profile?.full_name) {
-          setUsername(profile.full_name);
-        } else {
-          setUsername(session.user.email ?? 'Nutzer');
-        }
+      if (session && !session.user.confirmed_at) {
+        setShowEmailReminder(true);
       }
     };
-
-    fetchProfileName();
+    checkEmailConfirmation();
   }, []);
 
   return (
@@ -72,50 +52,48 @@ const DashboardPage: React.FC = () => {
         </motion.div>
       )}
 
-      {/* Dashboard Header (extracted component) */}
+      {/* Dashboard Header (now uses useAuth internally) */}
       <DashboardHeader
-        username={username}
         settingsOpen={settingsOpen}
         setSettingsOpen={setSettingsOpen}
       />
 
       {/* Content Section */}
       <div className="dashboard-content">
-      <motion.section
-  className="overview-section-box"
-  initial={{ opacity: 0, y: 30 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.5, delay: 0.2 }}
->
-  <div className="overview-inner">
-    <h2>Deine Übersicht</h2>
-    <div className="overview-cards">
-      <OverviewCard
-        label="Stuhlgang"
-        title="ø 4 Stuhlgänge täglich"
-        subtitle="2 schmerzhaft"
-        onAdd={() => console.log("Add Stuhlgang")}
-      />
-      <OverviewCard
-        label="Symptome"
-        title="Keine Daten"
-        subtitle="Kein auffälligen Ereignisse"
-        onAdd={() => console.log("Add Symptome")}
-      />
-      <OverviewCard
-        label="Wohlbefinden"
-        title="Steigend"
-        subtitle="Positive Entwicklung letzte Woche"
-        onAdd={() => console.log("Add Wohlbefinden")}
-      />
-    </div>
-  </div>
+        <motion.section
+          className="overview-section-box"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <div className="overview-inner">
+            <h2>Deine Übersicht</h2>
+            <div className="overview-cards">
+              <OverviewCard
+                label="Stuhlgang"
+                title="ø 4 Stuhlgänge täglich"
+                subtitle="2 schmerzhaft"
+                onAdd={() => console.log("Add Stuhlgang")}
+              />
+              <OverviewCard
+                label="Symptome"
+                title="Keine Daten"
+                subtitle="Kein auffälligen Ereignisse"
+                onAdd={() => console.log("Add Symptome")}
+              />
+              <OverviewCard
+                label="Wohlbefinden"
+                title="Steigend"
+                subtitle="Positive Entwicklung letzte Woche"
+                onAdd={() => console.log("Add Wohlbefinden")}
+              />
+            </div>
+          </div>
 
-  <button className="view-analyses-btn" onClick={() => navigate('/data')}>
-    Alle Analysen ansehen
-  </button>
-</motion.section>
-
+          <button className="view-analyses-btn" onClick={() => navigate('/data')}>
+            Alle Analysen ansehen
+          </button>
+        </motion.section>
 
         <motion.section
           className="content-section-box"
@@ -151,5 +129,3 @@ const DashboardPage: React.FC = () => {
 };
 
 export default DashboardPage;
-
-

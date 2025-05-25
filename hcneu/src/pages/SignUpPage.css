@@ -119,3 +119,14 @@
     text-align: center;
   }
 }
+
+.login-link {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.login-link a {
+  color: #9B91D9;
+  text-decoration: underline;
+}

@@ -33,7 +33,7 @@ const MultiStepSignup: React.FC = () => {
 
   return (
     <div className="signup-wrapper">
-      <h2 className="signup-title">Willkommen bei Ally</h2>
+      <h2 className="signup-title">Hier registrieren</h2>
 
       <div className="progress-root">
         <div

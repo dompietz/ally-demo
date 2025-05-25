@@ -1,8 +1,9 @@
 // src/pages/ContentLibraryPage.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import BottomNav from '../components/layout/BottomNav';
-import './DashboardPage.css'; // Reuse shared styles
+import DashboardHeader from '../components/Dashboard/DashboardHeader';
+import './DashboardPage.css';
 import './ContentLibraryPage.css';
 
 const categories = [
@@ -22,6 +23,8 @@ const categories = [
 ];
 
 const ContentLibraryPage: React.FC = () => {
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
   return (
     <div className="content-library-wrapper">
       {/* Glowing background */}
@@ -30,18 +33,12 @@ const ContentLibraryPage: React.FC = () => {
         <div className="grainy-overlay" />
       </div>
 
-      {/* Header */}
-      <motion.header
-        className="content-library-header"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="content-library-header-inner">
-          <h1>Deine Inhalte</h1>
-          <p>Hier findest du Videos & Artikel, sortiert nach Themen, die dir helfen.</p>
-        </div>
-      </motion.header>
+      {/* Reusable Header */}
+      <DashboardHeader
+        title="Deine Inhalte"
+        settingsOpen={settingsOpen}
+        setSettingsOpen={setSettingsOpen}
+      />
 
       {/* Main Content */}
       <div className="content-library-content">
