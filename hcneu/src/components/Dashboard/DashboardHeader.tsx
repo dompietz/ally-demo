@@ -14,9 +14,7 @@ interface DashboardHeaderProps {
 
 const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   username: propUsername,
-  title,
-  settingsOpen,
-  setSettingsOpen,
+  title
 }) => {
   const { username: contextUsername } = useAuth();
   const usernameToUse = propUsername || contextUsername || 'Nutzer';
