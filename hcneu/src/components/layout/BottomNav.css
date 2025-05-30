@@ -8,10 +8,10 @@
   max-width: 500px;
   background: linear-gradient(
     90deg,
-    #f7f4ee 0%,
-    #e8cbe2 50%,
-    #f7f4ee 100%
-  ); /* subtle warm fade */
+    rgba(247, 244, 238, 0.9) 0%,
+    rgba(232, 203, 226, 0.9) 50%,
+    rgba(247, 244, 238, 0.9) 100%
+  ); /* subtle warm fade with 75% opacity */
   border-radius: 2rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -19,6 +19,7 @@
   padding: 0.5rem 2rem;
   z-index: 100;
   border: solid 1px #e8cbe2;
+  backdrop-filter: blur(4px);
 }
 
 .nav-item {

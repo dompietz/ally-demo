@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+// src/components/dashboard/DashboardHeader.tsx
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../../lib/supabase';
 import { useAuth } from '../../context/AuthContext';
+import { supabase } from '../../lib/supabase';
+import AvatarDropdown from './AvatarDropdown';
 import './DashboardHeader.css';
 
 interface DashboardHeaderProps {
@@ -14,12 +16,11 @@ interface DashboardHeaderProps {
 
 const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   username: propUsername,
-  title
+  title,
 }) => {
   const { username: contextUsername } = useAuth();
   const usernameToUse = propUsername || contextUsername || 'Nutzer';
   const navigate = useNavigate();
-  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleLogout = async () => {
     const {
@@ -52,27 +53,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
           <h1>{title ? title : `Guten Morgen ${usernameToUse}`}</h1>
         </div>
 
-        <div className="profile-section" onMouseLeave={() => setDropdownOpen(false)}>
-          <div
-            className="profile-avatar-wrapper"
-            onClick={() => setDropdownOpen((prev) => !prev)}
-          >
-            <img
-              src={`https://ui-avatars.com/api/?name=${encodeURIComponent(usernameToUse)}`}
-              alt="Profilbild"
-              className="profile-avatar"
-            />
-            <span className="dropdown-arrow">▾</span>
-          </div>
-
-          {dropdownOpen && (
-            <div className="dropdown-menu">
-              <button onClick={() => navigate('/settings')}>Einstellungen</button>
-              <button onClick={() => alert('Hilfe öffnet bald!')}>Hilfe</button>
-              <button onClick={handleLogout}>Abmelden</button>
-            </div>
-          )}
-        </div>
+        <AvatarDropdown username={usernameToUse} onLogout={handleLogout} />
       </div>
     </motion.header>
   );

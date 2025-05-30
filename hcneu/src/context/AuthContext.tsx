@@ -1,4 +1,3 @@
-// src/context/AuthContext.tsx
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import type { User } from '@supabase/supabase-js';
@@ -7,12 +6,14 @@ interface AuthContextType {
   user: User | null;
   username: string | null;
   loading: boolean;
+  refreshUser: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   username: null,
   loading: true,
+  refreshUser: async () => {},
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -20,45 +21,49 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [username, setUsername] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const init = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      if (error || !data.user) {
-        console.error('Auth fetch error:', error?.message);
-        setLoading(false);
-        return;
-      }
+  const loadProfile = async (user: User) => {
+    const { data: profile, error } = await supabase
+      .from('profiles')
+      .select('full_name')
+      .eq('id', user.id)
+      .single();
 
-      const user = data.user;
-      setUser(user);
+    if (error || !profile?.full_name) {
+      setUsername(user.email || 'Nutzer');
+    } else {
+      setUsername(profile.full_name);
+    }
+  };
 
-      const { data: profile, error: profileError } = await supabase
-        .from('profiles')
-        .select('full_name')
-        .eq('id', user.id)
-        .single();
-
-      if (profileError || !profile?.full_name) {
-        setUsername(user.email || 'Nutzer');
-      } else {
-        setUsername(profile.full_name);
-      }
-
+  const init = async () => {
+    const { data: { session }, error } = await supabase.auth.getSession();
+    if (error || !session?.user) {
+      console.error('Auth fetch error:', error?.message);
       setLoading(false);
-    };
+      return;
+    }
 
+    const user = session.user;
+    setUser(user);
+    await loadProfile(user);
+    setLoading(false);
+  };
+
+  useEffect(() => {
     init();
-
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-      // Optional: re-run init to refresh full_name, or leave it out for now
+    const { data: listener } = supabase.auth.onAuthStateChange(() => {
+      init();
     });
 
     return () => listener.subscription.unsubscribe();
   }, []);
 
+  const refreshUser = async () => {
+    if (user) await loadProfile(user);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, username, loading }}>
+    <AuthContext.Provider value={{ user, username, loading, refreshUser }}>
       {children}
     </AuthContext.Provider>
   );
