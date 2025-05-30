@@ -68,3 +68,83 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Text Size */
+body[data-text-size='small'] {
+  font-size: 14px;
+}
+
+body[data-text-size='medium'] {
+  font-size: 16px;
+}
+
+body[data-text-size='large'] {
+  font-size: 18px;
+}
+
+body[data-text-size='x-large'] {
+  font-size: 20px;
+}
+
+/* Font Style */
+body[data-font-style='serif'] {
+  font-family: Georgia, Times, 'Times New Roman', serif;
+}
+
+body[data-font-style='sans-serif'] {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* High Contrast */
+.high-contrast {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+.high-contrast a,
+.high-contrast button,
+.high-contrast h1,
+.high-contrast h2 {
+  color: #ff0 !important;
+}
+
+/* Dyslexia Mode */
+.dyslexia-mode {
+  font-family: 'OpenDyslexic', Arial, sans-serif !important;
+  background-color: #fdf6e3;
+  color: #000;
+}
+
+/* Grayscale Mode */
+.grayscale-mode {
+  filter: grayscale(100%) !important;
+}
+
+/* Reduced Motion */
+.reduced-motion * {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Screen Reader Mode */
+.screen-reader-mode [aria-hidden='true'] {
+  display: none !important;
+}
+
+/* Descriptive Labels */
+/* Use JS or data attributes to enhance buttons dynamically */
+
+/* Captions/Transcripts */
+/* Placeholder classes for captions/transcripts toggles */
+.captions-enabled video::cue {
+  display: block;
+}
+
+.transcripts-visible .transcript {
+  display: block;
+}
+
+/* Mono Audio */
+/* Not controlled via CSS – use Web Audio API or media player settings */
+
+/* Extended Session */
+/* Controlled via JS/timers in app logic */

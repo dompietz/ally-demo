@@ -4,7 +4,9 @@ import * as Select from '@radix-ui/react-select';
 import './SettingsPage.css';
 
 import ProfileSection from '../components/settings/ProfileSection';
-import ContentPreferencesSection from '../components/settings/ContentPreferencesSection'; // ✅ NEW
+import ContentPreferencesSection from '../components/settings/ContentPreferencesSection';
+import SubscriptionSection from '../components/settings/SubscriptionSection'; // ✅ NEW
+import AccessibilitySection from '../components/settings/AccessibilitySection'; // ✅ NEW
 
 const categories = [
   { id: 'profil', label: 'Mein Profil' },
@@ -22,38 +24,11 @@ const SettingsPage: React.FC = () => {
       case 'profil':
         return <ProfileSection />;
       case 'inhalte':
-        return <ContentPreferencesSection />; // ✅ modular inclusion
+        return <ContentPreferencesSection />;
       case 'abo':
-        return (
-          <div className="settings-section">
-            <h2>Abonnement</h2>
-            <div className="subscription-details">
-              Aktueller Plan: <strong>Monatlich</strong><br />
-              Nächste Abrechnung: <strong>01.06.2025</strong>
-            </div>
-            <button className="cancel-btn">Abo kündigen</button>
-          </div>
-        );
+        return <SubscriptionSection />; // ✅ modularized
       case 'barriere':
-        return (
-          <div className="settings-section">
-            <h2>Barrierefreiheit</h2>
-            <div className="accessibility-options">
-              <label>
-                Hohen Kontrast aktivieren
-                <input type="checkbox" />
-              </label>
-              <label>
-                Textgröße
-                <select>
-                  <option>Normal</option>
-                  <option>Groß</option>
-                  <option>Extra Groß</option>
-                </select>
-              </label>
-            </div>
-          </div>
-        );
+        return <AccessibilitySection />; // ✅ modularized
       default:
         return null;
     }

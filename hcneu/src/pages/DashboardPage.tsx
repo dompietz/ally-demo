@@ -1,5 +1,4 @@
-// src/pages/DashboardPage.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './DashboardPage.css';
@@ -8,19 +7,17 @@ import { supabase } from '../lib/supabase';
 import BottomNav from '../components/layout/BottomNav';
 import OverviewCard from '../components/overview/OverviewCard';
 import ContentTile from '../components/content/ContentTile';
-import useRSSFeed from '../components/hooks/useRSSFeed';
 import DashboardHeader from '../components/Dashboard/DashboardHeader';
 import GlowingBackground from '../components/layout/GlowingBackground';
+import { content } from '../content/content'; // ✅ use your content
 
 const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
-  const { items, loading, error } = useRSSFeed('https://www.tagesschau.de/xml/rss2');
-
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [showEmailReminder, setShowEmailReminder] = useState(false);
 
-  // Check for email confirmation
-  React.useEffect(() => {
+  // ✅ Check for email confirmation
+  useEffect(() => {
     const checkEmailConfirmation = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session && !session.user.confirmed_at) {
@@ -32,10 +29,9 @@ const DashboardPage: React.FC = () => {
 
   return (
     <div className="dashboard-container">
-      {/* Glowing Background */}
       <GlowingBackground />
 
-      {/* ⛔️ Email confirmation reminder */}
+      {/* ✅ Email reminder */}
       {showEmailReminder && (
         <motion.div
           className="email-reminder"
@@ -50,14 +46,13 @@ const DashboardPage: React.FC = () => {
         </motion.div>
       )}
 
-      {/* Dashboard Header (now uses useAuth internally) */}
       <DashboardHeader
         settingsOpen={settingsOpen}
         setSettingsOpen={setSettingsOpen}
       />
 
-      {/* Content Section */}
       <div className="dashboard-content">
+        {/* ✅ Overview Section */}
         <motion.section
           className="overview-section-box"
           initial={{ opacity: 0, y: 30 }}
@@ -93,6 +88,7 @@ const DashboardPage: React.FC = () => {
           </button>
         </motion.section>
 
+        {/* ✅ Content Section */}
         <motion.section
           className="content-section-box"
           initial={{ opacity: 0, y: 30 }}
@@ -101,20 +97,14 @@ const DashboardPage: React.FC = () => {
         >
           <h2>Deine heutigen Inhalte</h2>
           <div className="content-tiles">
-            {loading && <p>Inhalte werden geladen...</p>}
-            {error && <p>Fehler beim Laden der Inhalte.</p>}
-            {items.slice(0, 3).map((item, idx) => (
+            {content.slice(0, 3).map((item, idx) => (
               <motion.div
-                key={idx}
+                key={item.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + idx * 0.1, duration: 0.4 }}
               >
-                <ContentTile
-                  title={item.title}
-                  description={item.description || 'Kein Beschreibungstext'}
-                  imageUrl={item.imageUrl || `https://source.unsplash.com/random/300x200?sig=${idx}`}
-                />
+                <ContentTile item={item} />
               </motion.div>
             ))}
           </div>

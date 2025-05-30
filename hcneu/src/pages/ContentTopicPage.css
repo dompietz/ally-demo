@@ -1,0 +1,50 @@
+.content-topic-wrapper {
+    padding: 80px 1.5rem 100px; /* respects header & bottom nav */
+    max-width: 1220px;
+    margin: 0 auto;
+  }
+  
+  .topic-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-transform: capitalize;
+    color: #222;
+  }
+  
+  .back-button {
+    background: none;
+    border: none;
+    color: #6c63ff;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+  }
+  
+  .content-tile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .content-tile-list {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+  
+    .content-tile-list > * {
+      flex: 1 1 calc(50% - 0.75rem); /* two tiles per row */
+    }
+  }
+  
+  .no-content {
+    color: #888;
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 1rem;
+  }
+  

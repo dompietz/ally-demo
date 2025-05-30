@@ -1,5 +1,5 @@
-// src/pages/ContentLibraryPage.tsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ add navigation
 import { motion } from 'framer-motion';
 import BottomNav from '../components/layout/BottomNav';
 import DashboardHeader from '../components/Dashboard/DashboardHeader';
@@ -17,57 +17,61 @@ const categories = [
   'Partnerschaft',
   'Ambulante Termine',
   'Stationäre Termine',
-  'Ernährung',
+  'Ernaehrung',
   'Bewegung',
   'Achtsamkeit',
-  'Umgang mit Stress'
+  'Stress'
 ];
 
 const ContentLibraryPage: React.FC = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const navigate = useNavigate(); // ✅ add this
 
   return (
     <div className="content-library-wrapper">
-      {/* Glowing background */}
       <GlowingBackground />
 
-      {/* Reusable Header */}
       <DashboardHeader
         title="Deine Inhalte"
         settingsOpen={settingsOpen}
         setSettingsOpen={setSettingsOpen}
       />
 
-      {/* Main Content */}
-      <div className="content-library-content">
+      <div className="content-library-main">
         <motion.section
-          className="topic-section-box"
+          className="content-library-topic-section"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h2>Themenübersicht</h2>
-          <div className="topic-grid">
+          <h2 className="content-library-section-title">Themenübersicht</h2>
+          <div className="content-library-topic-grid">
             {categories.map((category, idx) => (
-              <div key={idx} className="topic-tile">
-                <p className="topic-title">{category}</p>
-                <span className="topic-link">Ansehen →</span>
+              <div
+                key={idx}
+                className="content-library-topic-tile"
+                onClick={() =>
+                  navigate(`/contentlibrary/${encodeURIComponent(category)}`)
+                }
+              >
+                <p className="content-library-topic-title">{category}</p>
+                <span className="content-library-topic-link">Ansehen →</span>
               </div>
             ))}
           </div>
         </motion.section>
 
         <motion.section
-          className="overview-section-box"
+          className="content-library-breathing-section"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <h2>Finde deine Ruhe</h2>
-          <div className="breathing-promo">
+          <h2 className="content-library-section-title">Finde deine Ruhe</h2>
+          <div className="content-library-breathing-promo">
             <h3>Geführte Atemübungen</h3>
             <p>Entspanne dich mit gezielten Atemübungen für deinen Alltag.</p>
-            <button className="view-analyses-btn">Jetzt starten</button>
+            <button className="content-library-start-button">Jetzt starten</button>
           </div>
         </motion.section>
       </div>

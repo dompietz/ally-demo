@@ -1,12 +1,12 @@
 .content-tile {
-    background: white;
+  background: white;
     border-radius: 12px;
     overflow: hidden;
-    width: 300px;
+    min-width: 240px;
     display: flex;
     flex-direction: column;
     border: solid 1px;
-  border-color: #9B91D9;
+  border-color: #9B91D9; 
   }
   
   .tile-image {
