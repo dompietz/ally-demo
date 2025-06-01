@@ -87,7 +87,9 @@
 /* ───────── TILE CONTENT ───────── */
 .topic-title,
 .content-library-topic-title {
-  clamp(0.65rem, 1vw, 1rem);
+  font-size: clamp(0.5rem, 1.5vw, 1.25rem);
+  word-break: break-word;
+  overflow-wrap: anywhere;
   font-weight: 600;
   color: #1a1a1a;
   margin-bottom: 0.5rem;

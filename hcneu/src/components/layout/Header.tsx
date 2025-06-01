@@ -43,8 +43,8 @@ export default function Header() {
         <nav className="header__nav--desktop">
           <a href="#about">Über Ally</a>
           <a href="#faq">FAQ</a>
-          <Link to="/signup" className="nav-button filled">Sign Up</Link>
-          <Link to="/login" className="nav-button outline">Log In</Link>
+          <Link to="/signup" className="nav-button filled">Registrieren</Link>
+          <Link to="/login" className="nav-button outline">Login</Link>
         </nav>
 
         <button

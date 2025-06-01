@@ -1,0 +1,8 @@
+/* src/global.css */
+.tile-base {
+    border-radius: 12px;       /* consistent rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* soft shadow */
+    background-color: #fff;    /* default background */
+    transition: all 0.2s ease-in-out;
+  }
+  

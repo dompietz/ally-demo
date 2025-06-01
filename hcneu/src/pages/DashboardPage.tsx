@@ -9,6 +9,7 @@ import OverviewCard from '../components/overview/OverviewCard';
 import ContentTile from '../components/content/ContentTile';
 import DashboardHeader from '../components/Dashboard/DashboardHeader';
 import GlowingBackground from '../components/layout/GlowingBackground';
+import HeroSection from '../components/herosection/HeroSection';
 import { content } from '../content/content'; // ✅ use your content
 
 const DashboardPage: React.FC = () => {
@@ -51,6 +52,8 @@ const DashboardPage: React.FC = () => {
         setSettingsOpen={setSettingsOpen}
       />
 
+      <HeroSection /> {/* ⬅️ Add this right here after the header */}
+
       <div className="dashboard-content">
         {/* ✅ Overview Section */}
         <motion.section
@@ -63,9 +66,10 @@ const DashboardPage: React.FC = () => {
             <h2>Deine Übersicht</h2>
             <div className="overview-cards">
               <OverviewCard
-                label="Stuhlgang"
-                title="ø 4 Stuhlgänge täglich"
-                subtitle="2 schmerzhaft"
+                label="Stuhlfrequenz"
+                title="Du hast innerhalb der letzten Woche Werte für 3 Tage angegeben"
+                subtitle=""
+                status="Positive Entwicklung im letzten Monat"
                 onAdd={() => console.log("Add Stuhlgang")}
               />
               <OverviewCard

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Tile from '../layout/Tile'; // update path if needed
 import './ContentTile.css';
 
 type Props = {
@@ -26,18 +27,18 @@ const ContentTile: React.FC<Props> = ({ item }) => {
   };
 
   return (
-    <div className="content-tile" onClick={handleClick}>
-      <img
-        src={item.thumbnailUrl || 'https://source.unsplash.com/random/300x200?fallback'}
-        alt={item.title}
-        className="tile-image"
-      />
-      <div className="tile-body">
-        <h4>{item.title}</h4>
-        <p>{item.description}</p>
-        <button className="tile-button">Ansehen</button>
-      </div>
+    <Tile className="content-tile" onClick={handleClick}>
+    <img
+    src={item.thumbnailUrl || 'https://source.unsplash.com/random/300x200?fallback'}
+    alt={item.title}
+    className="tile-image"
+    />
+    <div className="tile-inner">
+    <h4>{item.title}</h4>
+    <p>{item.description}</p>
+    <button className="tile-button">Ansehen</button>
     </div>
+    </Tile>
   );
 };
 
