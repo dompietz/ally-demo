@@ -11,11 +11,13 @@ import DashboardHeader from '../components/Dashboard/DashboardHeader';
 import GlowingBackground from '../components/layout/GlowingBackground';
 import HeroSection from '../components/herosection/HeroSection';
 import { content } from '../content/content'; // ✅ use your content
+import DataEntryForm from '../components/dataentry/DataEntryForm';
 
 const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [showEmailReminder, setShowEmailReminder] = useState(false);
+  const [showEntryForm, setShowEntryForm] = useState(false);
 
   // ✅ Check for email confirmation
   useEffect(() => {
@@ -70,19 +72,19 @@ const DashboardPage: React.FC = () => {
                 title="Du hast innerhalb der letzten Woche Werte für 3 Tage angegeben"
                 subtitle=""
                 status="Positive Entwicklung im letzten Monat"
-                onAdd={() => console.log("Add Stuhlgang")}
+                onAdd={() => setShowEntryForm(true)}
               />
               <OverviewCard
                 label="Symptome"
                 title="Keine Daten"
                 subtitle="Kein auffälligen Ereignisse"
-                onAdd={() => console.log("Add Symptome")}
+                onAdd={() => setShowEntryForm(true)}
               />
               <OverviewCard
                 label="Wohlbefinden"
                 title="Steigend"
                 subtitle="Positive Entwicklung letzte Woche"
-                onAdd={() => console.log("Add Wohlbefinden")}
+                onAdd={() => setShowEntryForm(true)}
               />
             </div>
           </div>
@@ -116,6 +118,9 @@ const DashboardPage: React.FC = () => {
       </div>
 
       <BottomNav />
+      {showEntryForm && (
+        <DataEntryForm onClose={() => setShowEntryForm(false)} />
+      )}
     </div>
   );
 };

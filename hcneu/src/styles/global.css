@@ -1,8 +1,44 @@
-/* src/global.css */
+/* src/styles/global.css */
 .tile-base {
-    border-radius: 12px;       /* consistent rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* soft shadow */
-    background-color: #fff;    /* default background */
-    transition: all 0.2s ease-in-out;
-  }
-  
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+
+.data-entry-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.data-entry-form {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.data-entry-form input,
+.data-entry-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font: inherit;
+}
+
+.data-entry-form .actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
