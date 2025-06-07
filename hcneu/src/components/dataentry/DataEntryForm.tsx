@@ -31,7 +31,7 @@ const DataEntryForm: React.FC<Props> = ({ onClose }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: {},
     reset,
     setValue,
     watch,

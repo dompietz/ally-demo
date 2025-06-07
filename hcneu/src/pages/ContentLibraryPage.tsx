@@ -6,7 +6,6 @@ import DashboardHeader from '../components/Dashboard/DashboardHeader';
 import './DashboardPage.css';
 import './ContentLibraryPage.css';
 import GlowingBackground from '../components/layout/GlowingBackground';
-import Tile from '../components/layout/Tile';
 
 const categories = [
   'Erste Schritte',
