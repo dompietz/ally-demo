@@ -15,30 +15,151 @@
   justify-content: center;
   align-items: center;
   z-index: 2000;
+  padding: 1rem;
 }
 
 .data-entry-form {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 1rem;
-  width: 90%;
-  max-width: 420px;
+  background: white;
+  border-radius: 32px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+  padding: 42px 32px;
+  max-width: 480px;
+  min-height: 550px;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* 👈 Push content down */
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.input-group,
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: #fafafa;
+  border: 2px solid transparent;
+  box-shadow: inset 0 0 0 1px #e5e5e5;
+  transition: all 0.25s ease;
+  font: 500 1rem 'IBM Plex Sans', sans-serif;
+}
+
+.input-group:hover,
+.checkbox-row:hover {
+  border-color: #6ab28b33;
+}
+
+.input-group input[type='date'],
+.input-group textarea {
+  flex: 1;
+  font: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.input-group.date::after {
+  content: '📅';
+  font-size: 18px;
+  margin-left: auto;
+}
+
+.counter-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.counter-btn {
+  background: #9b91d9;
+  color: white;
+  font-size: 24px;
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+}
+
+.count-display {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font: 600 1rem 'IBM Plex Sans', sans-serif;
+}
+
+.back-btn {
+  background: #eee;
+  color: #444;
+}
+
+.next-btn {
+  background: #9b91d9;
+  color: white;
+}
+
+.progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #d1d1d1;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: #9b91d9;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* Ensure internal layout stays structured and spaced */
+.form-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex-grow: 1; /* 👈 fills available vertical space */
+}
+
+/* Step Title Styling */
+.form-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Center content like checkbox groups, date selectors, counters */
+.form-content {
+  flex-grow: 1; /* 👈 pushes nav to bottom */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 1rem;
 }
 
-.data-entry-form input,
-.data-entry-form textarea {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  font: inherit;
+/* Consistent checkbox layout */
+.checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.data-entry-form .actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
-}

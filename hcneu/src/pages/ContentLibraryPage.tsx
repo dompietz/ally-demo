@@ -6,6 +6,7 @@ import DashboardHeader from '../components/Dashboard/DashboardHeader';
 import './DashboardPage.css';
 import './ContentLibraryPage.css';
 import GlowingBackground from '../components/layout/GlowingBackground';
+import Tile from '../components/layout/Tile';
 
 const categories = [
   'Erste Schritte',
@@ -39,7 +40,7 @@ const ContentLibraryPage: React.FC = () => {
 
       <div className="content-library-main">
         <motion.section
-          className="content-library-topic-section"
+          className="Tile"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -62,7 +63,7 @@ const ContentLibraryPage: React.FC = () => {
         </motion.section>
 
         <motion.section
-          className="content-library-breathing-section"
+          className="Tile"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}

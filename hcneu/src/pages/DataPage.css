@@ -40,7 +40,7 @@
   }
   
   /* ───────── OVERVIEW SECTION ───────── */
-  .data-overview-section {
+  .data-overview-section, .Tile {
     background: #fff;
     border-radius: 1rem;
     padding: 1.5rem;

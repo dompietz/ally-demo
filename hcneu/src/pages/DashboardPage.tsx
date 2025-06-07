@@ -10,16 +10,17 @@ import ContentTile from '../components/content/ContentTile';
 import DashboardHeader from '../components/Dashboard/DashboardHeader';
 import GlowingBackground from '../components/layout/GlowingBackground';
 import HeroSection from '../components/herosection/HeroSection';
-import { content } from '../content/content'; // ✅ use your content
+import { content } from '../content/content';
 import DataEntryForm from '../components/dataentry/DataEntryForm';
 
 const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [showEmailReminder, setShowEmailReminder] = useState(false);
-  const [showEntryForm, setShowEntryForm] = useState(false);
 
-  // ✅ Check for email confirmation
+  // NEW: Tracks which section’s overlay is open
+  const [activeSection, setActiveSection] = useState<null | 'stuhlfrequenz' | 'symptome' | 'wohlbefinden'>(null);
+
   useEffect(() => {
     const checkEmailConfirmation = async () => {
       const { data: { session } } = await supabase.auth.getSession();
@@ -34,7 +35,6 @@ const DashboardPage: React.FC = () => {
     <div className="dashboard-container">
       <GlowingBackground />
 
-      {/* ✅ Email reminder */}
       {showEmailReminder && (
         <motion.div
           className="email-reminder"
@@ -54,10 +54,9 @@ const DashboardPage: React.FC = () => {
         setSettingsOpen={setSettingsOpen}
       />
 
-      <HeroSection /> {/* ⬅️ Add this right here after the header */}
+      <HeroSection />
 
       <div className="dashboard-content">
-        {/* ✅ Overview Section */}
         <motion.section
           className="overview-section-box"
           initial={{ opacity: 0, y: 30 }}
@@ -72,19 +71,19 @@ const DashboardPage: React.FC = () => {
                 title="Du hast innerhalb der letzten Woche Werte für 3 Tage angegeben"
                 subtitle=""
                 status="Positive Entwicklung im letzten Monat"
-                onAdd={() => setShowEntryForm(true)}
+                onAdd={() => setActiveSection('stuhlfrequenz')}
               />
               <OverviewCard
                 label="Symptome"
                 title="Keine Daten"
                 subtitle="Kein auffälligen Ereignisse"
-                onAdd={() => setShowEntryForm(true)}
+                onAdd={() => setActiveSection('symptome')}
               />
               <OverviewCard
                 label="Wohlbefinden"
                 title="Steigend"
                 subtitle="Positive Entwicklung letzte Woche"
-                onAdd={() => setShowEntryForm(true)}
+                onAdd={() => setActiveSection('wohlbefinden')}
               />
             </div>
           </div>
@@ -94,7 +93,6 @@ const DashboardPage: React.FC = () => {
           </button>
         </motion.section>
 
-        {/* ✅ Content Section */}
         <motion.section
           className="content-section-box"
           initial={{ opacity: 0, y: 30 }}
@@ -118,8 +116,10 @@ const DashboardPage: React.FC = () => {
       </div>
 
       <BottomNav />
-      {showEntryForm && (
-        <DataEntryForm onClose={() => setShowEntryForm(false)} />
+
+      {/* ✅ Only show DataEntryForm for “stuhlfrequenz” */}
+      {activeSection === 'stuhlfrequenz' && (
+        <DataEntryForm onClose={() => setActiveSection(null)} />
       )}
     </div>
   );
