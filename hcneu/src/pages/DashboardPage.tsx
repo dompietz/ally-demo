@@ -12,6 +12,8 @@ import GlowingBackground from '../components/layout/GlowingBackground';
 import HeroSection from '../components/herosection/HeroSection';
 import { content } from '../content/content';
 import DataEntryForm from '../components/dataentry/DataEntryForm';
+import SymptomForm from '../components/dataentry/SymptomForm';
+import WellbeingForm from '../components/dataentry/WellbeingForm';
 
 const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
@@ -117,9 +119,15 @@ const DashboardPage: React.FC = () => {
 
       <BottomNav />
 
-      {/* ✅ Only show DataEntryForm for “stuhlfrequenz” */}
+      {/* Open overlay forms based on active section */}
       {activeSection === 'stuhlfrequenz' && (
         <DataEntryForm onClose={() => setActiveSection(null)} />
+      )}
+      {activeSection === 'symptome' && (
+        <SymptomForm onClose={() => setActiveSection(null)} />
+      )}
+      {activeSection === 'wohlbefinden' && (
+        <WellbeingForm onClose={() => setActiveSection(null)} />
       )}
     </div>
   );
