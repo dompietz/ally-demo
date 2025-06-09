@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { booleanCheckbox } from '../../lib/formUtils';
 import { motion, AnimatePresence } from 'framer-motion';
 import Confetti from 'react-confetti';
 import { useWindowSize } from 'react-use';
@@ -200,7 +201,10 @@ const DataEntryForm: React.FC<Props> = ({ onClose }) => {
                   {step === 4 && (
                     <>
                       <label className="checkbox-row">
-                        <input type="checkbox" {...register('shared_with_team')} />
+                        <input
+                          type="checkbox"
+                          {...register('shared_with_team', booleanCheckbox())}
+                        />
                         Mit Behandlungsteam teilen
                       </label>
                       <p className="disclaimer-text">Diese Information erscheint im Arztbericht.</p>
