@@ -1,0 +1,125 @@
+hcneu
+├── .DS_Store
+├── .gitignore
+├── README.md
+├── _redirects
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── src
+│   ├── .DS_Store
+│   ├── App.css
+│   ├── App.tsx
+│   ├── assets
+│   │   ├── 192logo-2.png
+│   │   └── react.svg
+│   ├── components
+│   │   ├── Dashboard
+│   │   │   ├── AvatarDropdown.css
+│   │   │   ├── AvatarDropdown.tsx
+│   │   │   ├── DashboardHeader.css
+│   │   │   └── DashboardHeader.tsx
+│   │   ├── LandingPage
+│   │   ├── auth
+│   │   │   ├── MultiStepSignup.css
+│   │   │   ├── MultiStepSignup.tsx
+│   │   │   ├── ProtectedRoute.tsx
+│   │   │   └── PublicRoute.tsx
+│   │   ├── content
+│   │   │   ├── ArticleViewer.tsx
+│   │   │   ├── ContentTile.css
+│   │   │   └── ContentTile.tsx
+│   │   ├── herosection
+│   │   │   ├── HeroSection.css
+│   │   │   └── HeroSection.tsx
+│   │   ├── hooks
+│   │   │   └── useRSSFeed.ts
+│   │   ├── layout
+│   │   │   ├── BottomNav.css
+│   │   │   ├── BottomNav.tsx
+│   │   │   ├── Footer.css
+│   │   │   ├── Footer.tsx
+│   │   │   ├── GlowingBackground.css
+│   │   │   ├── GlowingBackground.tsx
+│   │   │   ├── Header.css
+│   │   │   ├── Header.tsx
+│   │   │   ├── Navbar.css
+│   │   │   ├── Navbar.tsx
+│   │   │   └── Tile.tsx
+│   │   ├── overview
+│   │   │   ├── OverviewCard.css
+│   │   │   └── OverviewCard.tsx
+│   │   ├── questionnaire
+│   │   │   ├── LoadingScreen.css
+│   │   │   ├── LoadingScreen.tsx
+│   │   │   ├── Questionnaire.css
+│   │   │   ├── Questionnaire.tsx
+│   │   │   ├── Step1_Welcome.tsx
+│   │   │   ├── Step2_Topics.tsx
+│   │   │   └── Step3_Disclaimer.tsx
+│   │   ├── settings
+│   │   │   ├── AccessibilitySection.css
+│   │   │   ├── AccessibilitySection.tsx
+│   │   │   ├── ContentPreferencesSection.css
+│   │   │   ├── ContentPreferencesSection.tsx
+│   │   │   ├── ProfileSection.css
+│   │   │   ├── ProfileSection.tsx
+│   │   │   ├── SubscriptionSection.css
+│   │   │   └── SubscriptionSection.tsx
+│   │   └── widgets
+│   │       ├── ChartWidget.css
+│   │       ├── ChartWidget.tsx
+│   │       ├── StatsCard.css
+│   │       ├── StatsCard.tsx
+│   │       ├── TableWidget.css
+│   │       └── TableWidget.tsx
+│   ├── content
+│   │   ├── articles
+│   │   │   ├── bewegung-und-immunsystem.md
+│   │   │   ├── die-rolle-der-ernaehrung-bei-chronischen-erkrankungen.md
+│   │   │   └── wie-stress-den-koerper-beeinflusst.md
+│   │   └── content.ts
+│   ├── context
+│   │   └── AuthContext.tsx
+│   ├── index.css
+│   ├── lib
+│   │   ├── auth.ts
+│   │   ├── preferences.ts
+│   │   ├── profile.ts
+│   │   └── supabase.ts
+│   ├── main.tsx
+│   ├── pages
+│   │   ├── CheckEmailPage.css
+│   │   ├── CheckEmailPage.tsx
+│   │   ├── ConfirmSuccessPage.css
+│   │   ├── ConfirmSuccessPage.tsx
+│   │   ├── ContentLibraryPage.css
+│   │   ├── ContentLibraryPage.tsx
+│   │   ├── ContentPage.css
+│   │   ├── ContentPage.tsx
+│   │   ├── ContentTopicPage.css
+│   │   ├── ContentTopicPage.tsx
+│   │   ├── DashboardPage.css
+│   │   ├── DashboardPage.tsx
+│   │   ├── DataPage.css
+│   │   ├── DataPage.tsx
+│   │   ├── LandingPage.css
+│   │   ├── LandingPage.tsx
+│   │   ├── LogInPage.css
+│   │   ├── LogInPage.tsx
+│   │   ├── ResetPasswordPage.tsx
+│   │   ├── SettingsPage.css
+│   │   ├── SettingsPage.tsx
+│   │   ├── SignUpPage.css
+│   │   ├── SignUpPage.tsx
+│   │   ├── SingleArticlePage.css
+│   │   └── SingleArticlePage.tsx
+│   ├── styles
+│   │   └── global.css
+│   ├── types.d.ts
+│   └── vite-env.d.ts
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
