@@ -200,7 +200,10 @@ const DataEntryForm: React.FC<Props> = ({ onClose }) => {
                   {step === 4 && (
                     <>
                       <label className="checkbox-row">
-                        <input type="checkbox" {...register('shared_with_team')} />
+                        <input
+                          type="checkbox"
+                          {...register('shared_with_team', { valueAsBoolean: true })}
+                        />
                         Mit Behandlungsteam teilen
                       </label>
                       <p className="disclaimer-text">Diese Information erscheint im Arztbericht.</p>
