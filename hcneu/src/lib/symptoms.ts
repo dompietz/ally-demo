@@ -7,35 +7,17 @@ export async function saveSymptomEntry(values: SymptomFormValues) {
 
   const user_id = session.user.id;
 
-  const { data: existing, error: fetchError } = await supabase
-    .from('symptoms')
-    .select('id')
-    .eq('user_id', user_id)
-    .eq('date', values.date)
-    .maybeSingle();
-
-  if (fetchError) throw fetchError;
-
-  const payload = {
+  const result = await supabase.from('symptom_entries').insert({
     user_id,
-    date: values.date,
-    severity: values.severity,
     notes: values.notes,
     shared_with_team: values.shared_with_team,
-  };
-
-  let result;
-
-  if (existing) {
-    result = await supabase
-      .from('symptoms')
-      .update(payload)
-      .eq('id', existing.id);
-  } else {
-    result = await supabase
-      .from('symptoms')
-      .insert(payload);
-  }
+    details: values.details,
+    intensity: values.intensity,
+    locations: values.locations,
+    times_of_day: values.times_of_day,
+    timeframe: values.timeframe,
+    symptom_type: values.symptom_type,
+  });
 
   if (result.error) throw result.error;
 }
